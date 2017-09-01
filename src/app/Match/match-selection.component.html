@@ -1,0 +1,9 @@
+<h3>Fooseball Matches</h3>
+<div>
+    <button (click)="addNew()">Add Match</button>
+    <a *ngFor="let match of allMatches">
+        <div>
+            <h4>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</h4>
+        </div>
+    </a>
+</div>

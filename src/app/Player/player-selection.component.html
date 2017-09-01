@@ -1,0 +1,11 @@
+<h3>Fooseball Players</h3>
+<div>
+    <input (keydown.enter)="search()" [(ngModel)]="searchTerm">
+    <button (click)="search()">Search</button>
+    <button (click)="addNew()">Add Player</button>
+    <a *ngFor="let player of players" [routerLink]="['/players', player.playerId]">
+        <div>
+            <h4>{{player.firstName}} {{player.lastName}} - {{player.nickName}}</h4>
+        </div>
+    </a>
+</div>

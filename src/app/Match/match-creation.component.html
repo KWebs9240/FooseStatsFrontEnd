@@ -1,0 +1,24 @@
+<h3>New Match</h3>
+<div>
+    <div>
+        <label>Player 1</label>
+        <select [(ngModel)]="selectedPlayer1">
+            <option *ngFor="let player of allPlayers" [ngValue]="player">{{player.firstName}} {{player.lastName}}</option>
+        </select>
+        <label>{{selectedPlayer1.firstName}} {{selectedPlayer1.lastName}} - {{selectedPlayer1.nickName}}</label>
+    </div>
+    <div>
+        <label>Player 2</label>
+        <select [(ngModel)]="selectedPlayer2">
+            <option *ngFor="let player of allPlayers" [ngValue]="player">{{player.firstName}} {{player.lastName}}</option>
+        </select>
+        <label>{{selectedPlayer2.firstName}} {{selectedPlayer2.lastName}} - {{selectedPlayer2.nickName}}</label>
+    </div>
+    <div>
+        <label>Player 1 Score</label>
+        <input [(ngModel)]="team1Score">
+        <label>Player 2 Score</label>
+        <input [(ngModel)]="team2Score">
+    </div>
+    <button (click)="saveThenAllMatches()">Save</button>
+</div>

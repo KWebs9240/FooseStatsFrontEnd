@@ -1,0 +1,12 @@
+<div *ngIf="player">
+    <h2>{{player.firstName}} {{player.lastName}} - {{player.nickName}} details</h2>
+    <button (click)="modifyPlayer()">Modify Player</button>
+    <button (click)="deletePlayer()">Delete Player</button>
+     <li *ngFor="let match of playedMatches">{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>
+    <!-- <div>
+        <label>name: </label>
+        <input [(ngModel)]="hero.name" placeholder="name">
+    </div>
+    <button (click)="goBack()">Back</button>
+    <button (click)="save()">Save</button>  -->
+</div>
