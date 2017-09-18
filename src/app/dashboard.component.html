@@ -1,7 +1,6 @@
-<h3>First 4 Players</h3>
-<button (click)="refresh()">dammit</button>
+<h3>{{barChartLabels[0]}}</h3>
 <div>
-    <canvas baseChart
+    <canvas baseChart height="100"
     *ngIf="showChart"
     [datasets]="barChartData"
     [labels]="barChartLabels"
@@ -12,9 +11,19 @@
     (chartClick)="chartClicked($event)"></canvas>
 </div>
 <div class="grid grid-pad">
-    <a *ngFor="let player of players"  class="col-1-4"> <!--[routerLink]="['/detail', hero.id]"-->
+    <div class="col-1-4" (click)="loadGamesPlayed()"> <!--[routerLink]="['/detail', hero.id]"-->
         <div class="module hero">
-            <h4>{{player.firstName}} {{player.lastName}} - {{player.nickName}}</h4>
+            <h4>Games Played</h4>
         </div>
-    </a>
+    </div>
+    <div class="col-1-4" (click)="loadGamesWon()"> <!--[routerLink]="['/detail', hero.id]"-->
+        <div class="module hero">
+            <h4>Games Won</h4>
+        </div>
+    </div>
+    <div class="col-1-4"> <!--[routerLink]="['/detail', hero.id]"-->
+        <div class="module hero">
+            <h4>Most William</h4>
+        </div>
+    </div>
 </div>

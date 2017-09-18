@@ -4,4 +4,6 @@ export class Player {
     lastName: string;
     nickName: string;
     updateDate: Date;
+    gamesPlayed: number;
+    gamesWon: number;
 }

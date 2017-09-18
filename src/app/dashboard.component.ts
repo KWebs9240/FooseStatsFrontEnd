@@ -11,7 +11,7 @@ import { PlayerService } from './Player/player.service';
 export class DashboardComponent implements OnInit {
 
     players: Player[] = [];
-    public barChartLabels: string[] = ['Games Played'];
+    public barChartLabels: string[] = [''];
     public barChartData: any[] = [];
     public barChartType: string = 'bar';
     public barChartLegend: boolean = true;
@@ -37,21 +37,62 @@ export class DashboardComponent implements OnInit {
             .then(result => {
                 this.players = result.slice(1, 5);
 
-                // result = result.concat(result);
-                // result = result.concat(result);
-                // result = result.concat(result);
-                // result = result.concat(result);
-                // result = result.concat(result);
-                // result = result.concat(result);
+                this.barChartData = [];
+                result.map(player => {
+                    this.barChartData.push({data: [player.gamesPlayed], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
+                });
 
-                // this.barChartData = [{ data: [1,2,3,4], label: 'Test Data'}];
-                // this.barChartLabels = result.map(player => player.firstName + ' ' + player.lastName);
+                this.barChartData = this.barChartData.sort(function (x, y) {
+                    if(x.data[0] > y.data[0]) {return -1;}
+                    else if (x.data[0] < y.data[0]) {return 1;}
+                    else {return 0;}
+                });
+
+                this.barChartLabels = ['Games Played'];
+                this.showChart = true;
+            });
+    }
+
+    loadGamesPlayed(): void {
+        this.showChart = false;
+        this.playerService.getPlayers()
+            .then(result => {
+                this.players = result.slice(1, 5);
 
                 this.barChartData = [];
                 result.map(player => {
-                    this.barChartData.push({data: [player.firstName.length], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
+                    this.barChartData.push({data: [player.gamesPlayed], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
                 });
 
+                this.barChartData = this.barChartData.sort(function (x, y) {
+                    if(x.data[0] > y.data[0]) {return -1;}
+                    else if (x.data[0] < y.data[0]) {return 1;}
+                    else {return 0;}
+                });
+
+                this.barChartLabels = ['Games Played'];
+                this.showChart = true;
+            });
+    }
+
+    loadGamesWon(): void {
+        this.showChart = false;
+        this.playerService.getPlayers()
+            .then(result => {
+                this.players = result.slice(1, 5);
+
+                this.barChartData = [];
+                result.map(player => {
+                    this.barChartData.push({data: [player.gamesWon], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
+                });
+
+                this.barChartData = this.barChartData.sort(function (x, y) {
+                    if(x.data[0] > y.data[0]) {return -1;}
+                    else if (x.data[0] < y.data[0]) {return 1;}
+                    else {return 0;}
+                });
+
+                this.barChartLabels = ['Games Won'];
                 this.showChart = true;
             });
     }
