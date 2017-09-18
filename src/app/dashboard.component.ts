@@ -11,6 +11,7 @@ import { PlayerService } from './Player/player.service';
 export class DashboardComponent implements OnInit {
 
     players: Player[] = [];
+    graphTitle: string = '';
     public barChartLabels: string[] = [''];
     public barChartData: any[] = [];
     public barChartType: string = 'bar';
@@ -48,7 +49,7 @@ export class DashboardComponent implements OnInit {
                     else {return 0;}
                 });
 
-                this.barChartLabels = ['Games Played'];
+                this.graphTitle = 'Games Played';
                 this.showChart = true;
             });
     }
@@ -70,7 +71,7 @@ export class DashboardComponent implements OnInit {
                     else {return 0;}
                 });
 
-                this.barChartLabels = ['Games Played'];
+                this.graphTitle = 'Games Played';
                 this.showChart = true;
             });
     }
@@ -92,7 +93,7 @@ export class DashboardComponent implements OnInit {
                     else {return 0;}
                 });
 
-                this.barChartLabels = ['Games Won'];
+                this.graphTitle = 'Games Won';
                 this.showChart = true;
             });
     }

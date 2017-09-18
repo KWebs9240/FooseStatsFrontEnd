@@ -1,4 +1,4 @@
-<h3>{{barChartLabels[0]}}</h3>
+<h3>{{graphTitle}}</h3>
 <div>
     <canvas baseChart height="100"
     *ngIf="showChart"
@@ -6,9 +6,8 @@
     [labels]="barChartLabels"
     [options]="barChartOptions"
     [legend]="barChartLegend"
-    [chartType]="barChartType"
-    (chartHover)="chartHovered($event)"
-    (chartClick)="chartClicked($event)"></canvas>
+    [chartType]="barChartType">
+</canvas> <!--(chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"-->
 </div>
 <div class="grid grid-pad">
     <div class="col-1-4" (click)="loadGamesPlayed()"> <!--[routerLink]="['/detail', hero.id]"-->
