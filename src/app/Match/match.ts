@@ -9,5 +9,6 @@ export class Match {
     team1Score: number;
     team2Score: number;
     isDoubles: boolean;
+    matchTypeId: string;
     updateDate: Date;
 }

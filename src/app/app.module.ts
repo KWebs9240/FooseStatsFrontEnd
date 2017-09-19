@@ -10,9 +10,6 @@ import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent }  from './app.component';
 import { DashboardComponent } from './dashboard.component';
-import { HeroDetailComponent } from './hero-detail.component';
-import { HeroesComponent } from './heroes.component';
-import { HeroService } from './hero.service';
 
 import { PlayerSelectionComponent } from './Player/player-selection.component';
 import { PlayerDetailComponent } from './Player/PlayerDetail/player-detail.component';
@@ -21,14 +18,16 @@ import { MatchSelectionComponent } from './Match/match-selection.component';
 import { MatchService } from './Match/match.service';
 import { PlayerCreationComponent } from './Player/player-creation.component';
 import { MatchCreationComponent } from './Match/match-creation.component';
+import { MatchTypeManagementComponent } from './MatchType/match-type-management.component';
+import { MatchTypeService } from './MatchType/match-type.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   providers: [
-    HeroService,
     MatchService,
     PlayerService,
+    MatchTypeService,
   ],
   imports: [
     BrowserModule,
@@ -40,14 +39,13 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   declarations: [ 
     AppComponent,
-    HeroDetailComponent,
-    HeroesComponent,
     DashboardComponent,
     PlayerSelectionComponent,
     PlayerDetailComponent,
     MatchSelectionComponent,
     PlayerCreationComponent,
     MatchCreationComponent,
+    MatchTypeManagementComponent,
   ],
   bootstrap:    [ AppComponent ]
 })

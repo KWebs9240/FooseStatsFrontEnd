@@ -1,1 +1,8 @@
-<hero-detail [hero]="selectedHero"></hero-detail>
+<h1>{{title}}</h1>
+<nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/players">Players</a>
+    <a routerLink="/matches">Matches</a>
+    <a routerLink="/matchTypeManagement">Match Types</a>
+</nav>
+<router-outlet></router-outlet>

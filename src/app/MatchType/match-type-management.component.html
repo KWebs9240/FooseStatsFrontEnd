@@ -1,0 +1,6 @@
+<h3>Match Types</h3>
+<div *ngFor="let matchType of allMatchTypes">
+    <input [(ngModel)]="matchType.matchTypeDescription">
+</div>
+<button (click)="addBlankMatchType()">Add Type</button>
+<button (click)="saveAllMatchTypes()">Save Matches</button>
