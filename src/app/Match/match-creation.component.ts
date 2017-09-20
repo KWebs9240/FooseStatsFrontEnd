@@ -7,6 +7,9 @@ import { PlayerService } from '../Player/player.service';
 import { Match } from './match';
 import { MatchService } from './match.service';
 
+import { MatchType } from '../MatchType/match-type';
+import { MatchTypeService } from '../MatchType/match-type.service';
+
 @Component({
     selector: 'match-creation',
     templateUrl: './match-creation.component.html'
@@ -17,9 +20,12 @@ export class MatchCreationComponent implements OnInit{
     selectedPlayer2: Player = new Player();
     team1Score: number;
     team2Score: number;
+    allMatchTypes: MatchType[];
+    selectedMatchType: MatchType;
 
     constructor(private playerService: PlayerService,
                 private matchService: MatchService,
+                private matchTypeService: MatchTypeService,
                 private router: Router,
                 ) {}
 
@@ -27,6 +33,10 @@ export class MatchCreationComponent implements OnInit{
         this.playerService.getPlayers()
             .then (result => {
                 this.allPlayers = result
+            });
+        this.matchTypeService.getMatchTypes()
+            .then (result => {
+                this.allMatchTypes = result
             });
     }
 
@@ -39,6 +49,7 @@ export class MatchCreationComponent implements OnInit{
         insertMatch.team1Score = this.team1Score;
         insertMatch.team2Score = this.team2Score;
         insertMatch.isDoubles = false;
+        insertMatch.matchTypeId = this.selectedMatchType.matchTypeId;
 
 
         return this.matchService.saveMatch(insertMatch);

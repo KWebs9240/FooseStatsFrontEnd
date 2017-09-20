@@ -20,5 +20,11 @@
         <label>Player 2 Score</label>
         <input [(ngModel)]="team2Score">
     </div>
+    <div>
+        <label>Match Type</label>
+        <select [(ngModel)]="selectedMatchType">
+            <option *ngFor="let matchType of allMatchTypes" [ngValue]="matchType">{{matchType.matchTypeDescription}}</option>
+        </select>
+    </div>
     <button (click)="saveThenAllMatches()">Save</button>
 </div>
