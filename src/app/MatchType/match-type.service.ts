@@ -53,4 +53,14 @@ export class MatchTypeService {
                 return result.json() as MatchType;
             })
     }
+
+    deleteMatchType(matchIdToDelete: MatchType): Promise<number> {
+        return this.http
+            .post(this.matchTypeUrl + '/Delete', JSON.stringify(matchIdToDelete), {headers: this.headers})
+            .toPromise()
+            .then(result => {
+                this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+                return result.json() as number;
+            });
+    }
 }

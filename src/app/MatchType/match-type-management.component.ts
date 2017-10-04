@@ -30,4 +30,12 @@ export class MatchTypeManagementComponent implements OnInit{
             this.matchTypeService.saveMatchType(matchType)
         });
     }
+
+    removeMatch(delMatchTypeId: string): void {
+        var delMatchType = this.allMatchTypes.find(x => x.matchTypeId === delMatchTypeId);
+        var delIndex = this.allMatchTypes.indexOf(delMatchType);
+        this.allMatchTypes.splice(delIndex, 1);
+
+        this.matchTypeService.deleteMatchType(delMatchType);
+    }
 }
