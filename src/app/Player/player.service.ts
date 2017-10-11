@@ -22,7 +22,7 @@ export class PlayerService{
         var cacheCheckTime = new Date()
         cacheCheckTime.setMinutes(cacheCheckTime.getMinutes() - 15);
         if(this.lastCacheDate < cacheCheckTime){
-            var MatchesParamAdded = this.playerUrl + '?LoadGamesInfo=true';
+            var MatchesParamAdded = this.playerUrl + '?LoadGamesInfo=true&LoadPointInfo=true';
             return this.http.get(MatchesParamAdded)
                 .toPromise()
                 .then(response => {

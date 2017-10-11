@@ -80,7 +80,8 @@ export class DashboardComponent implements OnInit {
         this.showChart = false;
         this.playerService.getPlayers()
             .then(result => {
-                this.players = result.slice(1, 5);
+                //Something like this if I ever want to only get the first few
+                //this.players = result.slice(1, 5);
 
                 this.barChartData = [];
                 result.map(player => {
@@ -94,6 +95,29 @@ export class DashboardComponent implements OnInit {
                 });
 
                 this.graphTitle = 'Games Won';
+                this.showChart = true;
+            });
+    }
+
+    loadPointsPerGame(): void {
+        this.showChart = false;
+        this.playerService.getPlayers()
+            .then(result => {
+                //Something like this if I ever want to only get the first few
+                //this.players = result.slice(1, 5);
+
+                this.barChartData = [];
+                result.map(player => {
+                    this.barChartData.push({data: [player.pointsPerGame], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
+                });
+
+                this.barChartData = this.barChartData.sort(function (x, y) {
+                    if(x.data[0] > y.data[0]) {return -1;}
+                    else if (x.data[0] < y.data[0]) {return 1;}
+                    else {return 0;}
+                });
+
+                this.graphTitle = 'Points Per Game';
                 this.showChart = true;
             });
     }

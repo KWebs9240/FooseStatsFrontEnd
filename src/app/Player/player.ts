@@ -6,4 +6,7 @@ export class Player {
     updateDate: Date;
     gamesPlayed: number;
     gamesWon: number;
+    totalPointsScored: number;
+    totalPointsAllowed: number;
+    pointsPerGame: number;
 }
