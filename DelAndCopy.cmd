@@ -1,4 +1,4 @@
-ng build
+rem ng build
 
 rmdir "../FooseStatsFrontEndDeploy/dist" /s/q
 
