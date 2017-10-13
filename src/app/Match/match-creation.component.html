@@ -15,9 +15,9 @@
         <label>{{selectedPlayer2.firstName}} {{selectedPlayer2.lastName}} - {{selectedPlayer2.nickName}}</label>
     </div>
     <div>
-        <label>Player 1 Score</label>
+        <label>{{selectedPlayer1.firstName ? selectedPlayer1.firstName + " " + selectedPlayer1.lastName : "Player 1"}} Score</label>
         <input [(ngModel)]="team1Score">
-        <label>Player 2 Score</label>
+        <label>{{selectedPlayer2.firstName ? selectedPlayer2.firstName + " " + selectedPlayer2.lastName : "Player 2"}} Score</label>
         <input [(ngModel)]="team2Score">
     </div>
     <div>
