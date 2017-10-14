@@ -929,7 +929,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{title}}</h1>\r\n<nav>\r\n    <a routerLink=\"/dashboard\">Dashboard</a>\r\n    <a routerLink=\"/players\">Players</a>\r\n    <a routerLink=\"/matches\">Matches</a>\r\n    <a routerLink=\"/matchTypeManagement\">Match Types</a>\r\n</nav>\r\n<router-outlet></router-outlet>"
+module.exports = "<h1>{{title}}</h1>\r\n<nav>\r\n    <a routerLink=\"/dashboard\">Dashboard</a>\r\n    <a routerLink=\"/players\">Players</a>\r\n    <a routerLink=\"/matches\">Matches</a>\r\n    <!-- <a routerLink=\"/matchTypeManagement\">Match Types</a> -->\r\n</nav>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
