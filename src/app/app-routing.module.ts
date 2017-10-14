@@ -18,6 +18,7 @@ const routes: Routes = [
     { path: 'playercreate', component: PlayerCreationComponent },
     { path: 'playercreate/:id', component: PlayerCreationComponent },
     { path: 'matchcreate', component: MatchCreationComponent },
+    { path: 'matchcreate/:id', component: MatchCreationComponent },
     { path: 'matchTypeManagement', component: MatchTypeManagementComponent },
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Player } from '../Player/player';
 import { PlayerService } from '../Player/player.service';
@@ -16,6 +17,7 @@ import { MatchTypeService } from '../MatchType/match-type.service';
 })
 export class MatchCreationComponent implements OnInit{
     allPlayers: Player [];
+    matchId: string;
     selectedPlayer1: Player = new Player();
     selectedPlayer2: Player = new Player();
     team1Score: number;
@@ -26,22 +28,42 @@ export class MatchCreationComponent implements OnInit{
     constructor(private playerService: PlayerService,
                 private matchService: MatchService,
                 private matchTypeService: MatchTypeService,
+                private location: Location,
                 private router: Router,
+                private activatedRoute: ActivatedRoute,
                 ) {}
 
     ngOnInit(): void {
         this.playerService.getPlayers()
-            .then (result => {
-                this.allPlayers = result
-            });
+        .then (result => {
+            this.allPlayers = result
+        });
         this.matchTypeService.getMatchTypes()
-            .then (result => {
-                this.allMatchTypes = result
+        .then (result => {
+            this.allMatchTypes = result
+        });
+
+        this.activatedRoute.params
+        .switchMap((params: Params) => {
+            if(params['id']) {
+                return this.matchService.getMatch(params['id']);
+            }
+            return new Promise<Match>(resolve => {
+                return new Match();
             });
+        }).subscribe(foundMatch => {
+            this.matchId = foundMatch.matchId;
+            this.selectedPlayer1 = this.allPlayers.find(player => player.playerId === foundMatch.player1Id);
+            this.selectedPlayer2 = this.allPlayers.find(player => player.playerId === foundMatch.player2Id);
+            this.team1Score = foundMatch.team1Score;
+            this.team2Score = foundMatch.team2Score;
+            this.selectedMatchType = this.allMatchTypes.find(matchType => matchType.matchTypeId === foundMatch.matchTypeId);
+        });
     }
 
     save(): Promise<Match> {
         var insertMatch = new Match();
+        insertMatch.matchId = this.matchId;
         insertMatch.player1Id = this.selectedPlayer1.playerId;
         insertMatch.player2Id = this.selectedPlayer2.playerId;
         //insertMatch.player3Id = this.selectedPlayer3.playerId;
@@ -55,10 +77,10 @@ export class MatchCreationComponent implements OnInit{
         return this.matchService.saveMatch(insertMatch);
     }
 
-    saveThenAllMatches(): void {
+    saveThenBack(): void {
         this.save()
             .then(match => {
-                this.router.navigate(['matches']);
+                this.location.back();
             });
     }
 }

@@ -9,7 +9,7 @@ import { Player } from './player';
 
 @Injectable()
 export class PlayerService{
-    private playerUrl = 'http://localhost:64358/api/Player';
+    private playerUrl = 'http://stattrackerwebapi.azurewebsites.net/api/Player';
     private headers = new Headers({'Content-Type': 'application/json'});
 
     private lastCacheDate: Date = new Date(2000, 1, 0, 0, 0, 0, 0);

@@ -11,7 +11,7 @@ import { PlayerService } from '../Player/player.service';
 
 @Injectable()
 export class MatchService {
-    private matchUrl = 'http://localhost:64358/api/Match';
+    private matchUrl = 'http://stattrackerwebapi.azurewebsites.net/api/Match';
     private headers = new Headers({'Content-Type': 'application/json'});
     
     private lastCacheDate: Date = new Date(2000, 1, 0, 0, 0, 0, 0);
@@ -53,6 +53,13 @@ export class MatchService {
         }
     }
 
+    getMatch(matchId: string): Promise<Match> {
+        return this.getMatches()
+            .then(matches => {
+                return matches.find(match => match.matchId === matchId);
+            })
+    }
+
     getPlayerMatches(playerId: string): Promise<Match[]> {
         return this.getMatches()
             .then(matches => {
@@ -66,13 +73,25 @@ export class MatchService {
     }
 
     saveMatch(matchForSaving: Match): Promise<Match> {
-        return this.http
-            .post(this.matchUrl, JSON.stringify(matchForSaving), {headers: this.headers})
-            .toPromise()
-            .then(result => {
-                //Resetting the last cache date so the list of players is refreshed
-                this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
-                return result.json() as Match;
-            })
+        if(matchForSaving.matchId) {
+            return this.http
+                .put(this.matchUrl, JSON.stringify(matchForSaving), {headers: this.headers})
+                .toPromise()
+                .then(result => {
+                    //Resetting the last cache date so the list of players is refreshed
+                    this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+                    return result.json() as Match;
+                });
+        }
+        else {
+            return this.http
+                .post(this.matchUrl, JSON.stringify(matchForSaving), {headers: this.headers})
+                .toPromise()
+                .then(result => {
+                    //Resetting the last cache date so the list of players is refreshed
+                    this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+                    return result.json() as Match;
+                });
+        }
     }
 }

@@ -2,7 +2,10 @@
     <h2>{{player.firstName}} {{player.lastName}} - {{player.nickName}} details</h2>
     <button (click)="modifyPlayer()">Modify Player</button>
     <button (click)="deletePlayer()">Delete Player</button>
-     <li *ngFor="let match of playedMatches">{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>
+    <a *ngFor="let match of playedMatches" [routerLink]="['/matchcreate', match.matchId]">
+        <li>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>
+    </a> 
+
     <!-- <div>
         <label>name: </label>
         <input [(ngModel)]="hero.name" placeholder="name">
