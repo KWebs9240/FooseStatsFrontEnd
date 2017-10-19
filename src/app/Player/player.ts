@@ -4,6 +4,7 @@ export class Player {
     lastName: string;
     nickName: string;
     updateDate: Date;
+    hexColor: string;
     gamesPlayed: number;
     gamesWon: number;
     totalPointsScored: number;

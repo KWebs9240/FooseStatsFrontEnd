@@ -9,7 +9,7 @@ import { MatchType } from './match-type';
 
 @Injectable()
 export class MatchTypeService {
-    private matchTypeUrl = 'http://stattrackerwebapi.azurewebsites.net/api/MatchType';
+    private matchTypeUrl = 'http://localhost:64358/api/MatchType';
     private headers = new Headers({'Content-Type': 'application/json'});
     
     private lastCacheDate: Date = new Date(2000, 1, 0, 0, 0, 0, 0);

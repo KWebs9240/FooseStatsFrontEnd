@@ -11,7 +11,7 @@ import { PlayerService } from '../Player/player.service';
 
 @Injectable()
 export class MatchService {
-    private matchUrl = 'http://stattrackerwebapi.azurewebsites.net/api/Match';
+    private matchUrl = 'http://localhost:64358/api/Match';
     private headers = new Headers({'Content-Type': 'application/json'});
     
     private lastCacheDate: Date = new Date(2000, 1, 0, 0, 0, 0, 0);

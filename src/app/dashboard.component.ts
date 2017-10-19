@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
     graphTitle: string = '';
     public barChartLabels: string[] = [''];
     public barChartData: any[] = [];
+    public barChartColors: any[] = [];
     public barChartType: string = 'bar';
     public barChartLegend: boolean = true;
     public barChartOptions: any = {
@@ -36,19 +37,20 @@ export class DashboardComponent implements OnInit {
         this.showChart = false;
         this.playerService.getPlayers()
             .then(result => {
-                this.players = result.slice(1, 5);
+
+                result = result.sort(function(x, y) {
+                    if(x.gamesPlayed > y.gamesPlayed) {return -1}
+                    else if (x.gamesPlayed < y.gamesPlayed) {return 1}
+                    else {return 0;}
+                });
 
                 this.barChartData = [];
                 result.map(player => {
                     this.barChartData.push({data: [player.gamesPlayed], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
+                    this.barChartColors.push({ backgroundColor: player.hexColor});
                 });
 
-                this.barChartData = this.barChartData.sort(function (x, y) {
-                    if(x.data[0] > y.data[0]) {return -1;}
-                    else if (x.data[0] < y.data[0]) {return 1;}
-                    else {return 0;}
-                });
-
+                
                 this.graphTitle = 'Games Played';
                 this.showChart = true;
             });
