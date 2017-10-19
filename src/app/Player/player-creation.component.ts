@@ -13,6 +13,7 @@ export class PlayerCreationComponent implements OnInit{
     firstName: string;
     lastName: string;
     nickName: string;
+    hexColor: string;
 
     constructor(private playerService: PlayerService,
                 private router: Router,
@@ -32,6 +33,7 @@ export class PlayerCreationComponent implements OnInit{
             this.firstName = foundPlayer.firstName;
             this.lastName = foundPlayer.lastName;
             this.nickName = foundPlayer.nickName;
+            this.hexColor = foundPlayer.hexColor;
         });
     }
 
@@ -41,6 +43,7 @@ export class PlayerCreationComponent implements OnInit{
         insertPlayer.lastName = this.lastName;
         insertPlayer.nickName = this.nickName;
         insertPlayer.playerId = this.playerId;
+        insertPlayer.hexColor = this.hexColor;
 
         return this.playerService.savePlayer(insertPlayer)
     }

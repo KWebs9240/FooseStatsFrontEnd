@@ -58,6 +58,7 @@ export class PlayerService{
                     return x.firstName === playerForSaving.firstName
                     && x.lastName === playerForSaving.lastName
                     && x.nickName === playerForSaving.nickName
+                    && !playerForSaving.playerId
                     })) {
                         return new Promise<Player>(resolve => {
                             return null;

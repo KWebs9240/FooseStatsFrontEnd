@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 //import { InMemoryDataService } from './in-memory-data.service';
 
 import { ChartsModule } from 'ng2-charts';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { AppComponent }  from './app.component';
 import { DashboardComponent } from './dashboard.component';
@@ -35,6 +36,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     HttpModule,
     ChartsModule,
+    ColorPickerModule,
     //InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   declarations: [ 

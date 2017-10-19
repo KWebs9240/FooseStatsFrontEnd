@@ -12,5 +12,9 @@
         <label>Nickname</label>
         <input [(ngModel)]="nickName">
     </div>
+    <div>
+        <label>PlayerColor</label>
+        <input [(colorPicker)]="hexColor" [style.background]="hexColor" [value]="hexColor"/>
+    </div>
     <button (click)="saveThenView()">Save</button>
 </div>

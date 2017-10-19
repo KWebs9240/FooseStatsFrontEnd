@@ -119,7 +119,7 @@ MatchCreationComponent = __decorate([
         selector: 'match-creation',
         template: __webpack_require__("../../../../../src/app/Match/match-creation.component.html")
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__Player_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__Player_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__match_service__["a" /* MatchService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__MatchType_match_type_service__["a" /* MatchTypeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__MatchType_match_type_service__["a" /* MatchTypeService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__Player_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__Player_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__match_service__["a" /* MatchService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__MatchType_match_type_service__["a" /* MatchTypeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__MatchType_match_type_service__["a" /* MatchTypeService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object])
 ], MatchCreationComponent);
 
 var _a, _b, _c, _d, _e, _f;
@@ -583,7 +583,7 @@ PlayerDetailComponent = __decorate([
         selector: 'player-detail',
         template: __webpack_require__("../../../../../src/app/Player/PlayerDetail/player-detail.component.html")
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__Match_match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__Match_match_service__["a" /* MatchService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__Match_match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__Match_match_service__["a" /* MatchService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _e || Object])
 ], PlayerDetailComponent);
 
 var _a, _b, _c, _d, _e;
@@ -594,7 +594,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/Player/player-creation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>New Player</h3>\r\n<div>\r\n    <div>\r\n        <label>First Name</label>\r\n        <input [(ngModel)]=\"firstName\">\r\n    </div>\r\n    <div>\r\n        <label>Last Name</label>\r\n        <input [(ngModel)]=\"lastName\">\r\n    </div>\r\n    <div>\r\n        <label>Nickname</label>\r\n        <input [(ngModel)]=\"nickName\">\r\n    </div>\r\n    <button (click)=\"saveThenView()\">Save</button>\r\n</div>"
+module.exports = "<h3>New Player</h3>\r\n<div>\r\n    <div>\r\n        <label>First Name</label>\r\n        <input [(ngModel)]=\"firstName\">\r\n    </div>\r\n    <div>\r\n        <label>Last Name</label>\r\n        <input [(ngModel)]=\"lastName\">\r\n    </div>\r\n    <div>\r\n        <label>Nickname</label>\r\n        <input [(ngModel)]=\"nickName\">\r\n    </div>\r\n    <div>\r\n        <label>PlayerColor</label>\r\n        <input [(colorPicker)]=\"hexColor\" [style.background]=\"hexColor\" [value]=\"hexColor\"/>\r\n    </div>\r\n    <button (click)=\"saveThenView()\">Save</button>\r\n</div>"
 
 /***/ }),
 
@@ -641,6 +641,7 @@ var PlayerCreationComponent = (function () {
             _this.firstName = foundPlayer.firstName;
             _this.lastName = foundPlayer.lastName;
             _this.nickName = foundPlayer.nickName;
+            _this.hexColor = foundPlayer.hexColor;
         });
     };
     PlayerCreationComponent.prototype.save = function () {
@@ -649,6 +650,7 @@ var PlayerCreationComponent = (function () {
         insertPlayer.lastName = this.lastName;
         insertPlayer.nickName = this.nickName;
         insertPlayer.playerId = this.playerId;
+        insertPlayer.hexColor = this.hexColor;
         return this.playerService.savePlayer(insertPlayer);
     };
     PlayerCreationComponent.prototype.saveThenView = function () {
@@ -824,7 +826,8 @@ var PlayerService = (function () {
             if (players.find(function (x) {
                 return x.firstName === playerForSaving.firstName
                     && x.lastName === playerForSaving.lastName
-                    && x.nickName === playerForSaving.nickName;
+                    && x.nickName === playerForSaving.nickName
+                    && !playerForSaving.playerId;
             })) {
                 return new Promise(function (resolve) {
                     return null;
@@ -1015,18 +1018,20 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_charts__ = __webpack_require__("../../../../ng2-charts/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Player_player_selection_component__ = __webpack_require__("../../../../../src/app/Player/player-selection.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Player_PlayerDetail_player_detail_component__ = __webpack_require__("../../../../../src/app/Player/PlayerDetail/player-detail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Match_match_selection_component__ = __webpack_require__("../../../../../src/app/Match/match-selection.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Match_match_service__ = __webpack_require__("../../../../../src/app/Match/match.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Player_player_creation_component__ = __webpack_require__("../../../../../src/app/Player/player-creation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Match_match_creation_component__ = __webpack_require__("../../../../../src/app/Match/match-creation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_color_picker__ = __webpack_require__("../../../../ngx-color-picker/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_color_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ngx_color_picker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Player_player_selection_component__ = __webpack_require__("../../../../../src/app/Player/player-selection.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Player_PlayerDetail_player_detail_component__ = __webpack_require__("../../../../../src/app/Player/PlayerDetail/player-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Match_match_selection_component__ = __webpack_require__("../../../../../src/app/Match/match-selection.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Match_match_service__ = __webpack_require__("../../../../../src/app/Match/match.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Player_player_creation_component__ = __webpack_require__("../../../../../src/app/Player/player-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Match_match_creation_component__ = __webpack_require__("../../../../../src/app/Match/match-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1052,6 +1057,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -1060,28 +1066,29 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         providers: [
-            __WEBPACK_IMPORTED_MODULE_11__Match_match_service__["a" /* MatchService */],
-            __WEBPACK_IMPORTED_MODULE_9__Player_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_15__MatchType_match_type_service__["a" /* MatchTypeService */],
+            __WEBPACK_IMPORTED_MODULE_12__Match_match_service__["a" /* MatchService */],
+            __WEBPACK_IMPORTED_MODULE_10__Player_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_16__MatchType_match_type_service__["a" /* MatchTypeService */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_16__app_routing_module__["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_17__app_routing_module__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_4_ng2_charts__["ChartsModule"],
+            __WEBPACK_IMPORTED_MODULE_5_ngx_color_picker__["ColorPickerModule"],
         ],
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__dashboard_component__["a" /* DashboardComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__Player_player_selection_component__["a" /* PlayerSelectionComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__Player_PlayerDetail_player_detail_component__["a" /* PlayerDetailComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__Match_match_selection_component__["a" /* MatchSelectionComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__Player_player_creation_component__["a" /* PlayerCreationComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__Match_match_creation_component__["a" /* MatchCreationComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__dashboard_component__["a" /* DashboardComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__Player_player_selection_component__["a" /* PlayerSelectionComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__Player_PlayerDetail_player_detail_component__["a" /* PlayerDetailComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__Match_match_selection_component__["a" /* MatchSelectionComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__Player_player_creation_component__["a" /* PlayerCreationComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__Match_match_creation_component__["a" /* MatchCreationComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */],
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
