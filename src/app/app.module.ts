@@ -6,7 +6,8 @@ import { HttpModule } from '@angular/http';
 //import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService } from './in-memory-data.service';
 
-import { ChartsModule } from 'ng2-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { AppComponent }  from './app.component';
@@ -35,7 +36,8 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    ChartsModule,
+    NgxChartsModule,
+    BrowserAnimationsModule,
     ColorPickerModule,
     //InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],

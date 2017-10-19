@@ -1,14 +1,19 @@
 <h3>{{graphTitle}}</h3>
-<div>
-    <canvas baseChart height="100"
+<div class="sizedchart">
+    <!-- [view]="view" -->
+    <ngx-charts-bar-vertical
     *ngIf="showChart"
-    [datasets]="barChartData"
-    [labels]="barChartLabels"
-    [options]="barChartOptions"
-    [colors]="barChartColors"
-    [legend]="barChartLegend"
-    [chartType]="barChartType">
-</canvas> <!--(chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"-->
+    [scheme]="colorScheme"
+    [results]="barChartData"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel">
+    </ngx-charts-bar-vertical>
 </div>
 <div class="grid grid-pad">
     <div class="col-1-4" (click)="loadGamesPlayed()"> <!--[routerLink]="['/detail', hero.id]"-->

@@ -14,6 +14,8 @@
       'app': 'app',
 
       // angular bundles
+      '@angular/animations': "npm:@angular/animations/bundles/animations.umd.js",
+      '@angular/animations/browser': "npm:/@angular/animations/bundles/animations-browser.umd.js",
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
       '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
@@ -26,7 +28,7 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'ng2-charts': 'npm:ng2-charts/bundles/ng2-charts.umd.js',
+      '@swimlane/ngx-charts': 'npm:/@swimlane/ngx-charts/release/index.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

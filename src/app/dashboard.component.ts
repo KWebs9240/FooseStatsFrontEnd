@@ -12,26 +12,28 @@ export class DashboardComponent implements OnInit {
 
     players: Player[] = [];
     graphTitle: string = '';
-    public barChartLabels: string[] = [''];
-    public barChartData: any[] = [];
-    public barChartColors: any[] = [];
-    public barChartType: string = 'bar';
-    public barChartLegend: boolean = true;
-    public barChartOptions: any = {
-        scaleShowVerticalLines: false,
-        responsive: true,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+  
+    // view: any[] = [700, 400];
+  
+    // options
+    showXAxis = false;
+    showYAxis = true;
+    gradient = false;
+    showLegend = true;
+    showXAxisLabel = false;
+    xAxisLabel = 'Player';
+    showYAxisLabel = false;
+    yAxisLabel = 'Games';
+  
+    colorScheme = {
+      domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
     };
+
+    public barChartData: any[] = [];
 
     showChart: boolean = false;
 
-    constructor(private playerService: PlayerService) {}
+    constructor(private playerService: PlayerService) { }
 
     ngOnInit(): void {
         this.showChart = false;
@@ -45,9 +47,10 @@ export class DashboardComponent implements OnInit {
                 });
 
                 this.barChartData = [];
+                this.colorScheme.domain = [];
                 result.map(player => {
-                    this.barChartData.push({data: [player.gamesPlayed], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
-                    this.barChartColors.push({ backgroundColor: player.hexColor});
+                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesPlayed]});
+                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
                 });
 
                 
@@ -60,17 +63,18 @@ export class DashboardComponent implements OnInit {
         this.showChart = false;
         this.playerService.getPlayers()
             .then(result => {
-                this.players = result.slice(1, 5);
 
-                this.barChartData = [];
-                result.map(player => {
-                    this.barChartData.push({data: [player.gamesPlayed], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
+                result = result.sort(function(x, y) {
+                    if(x.gamesPlayed > y.gamesPlayed) {return -1}
+                    else if (x.gamesPlayed < y.gamesPlayed) {return 1}
+                    else {return 0;}
                 });
 
-                this.barChartData = this.barChartData.sort(function (x, y) {
-                    if(x.data[0] > y.data[0]) {return -1;}
-                    else if (x.data[0] < y.data[0]) {return 1;}
-                    else {return 0;}
+                this.barChartData = [];
+                this.colorScheme.domain = [];
+                result.map(player => {
+                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesPlayed]});
+                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
                 });
 
                 this.graphTitle = 'Games Played';
@@ -82,18 +86,18 @@ export class DashboardComponent implements OnInit {
         this.showChart = false;
         this.playerService.getPlayers()
             .then(result => {
-                //Something like this if I ever want to only get the first few
-                //this.players = result.slice(1, 5);
-
-                this.barChartData = [];
-                result.map(player => {
-                    this.barChartData.push({data: [player.gamesWon], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
+                
+                result = result.sort(function(x, y) {
+                    if(x.gamesWon > y.gamesWon) {return -1}
+                    else if (x.gamesWon < y.gamesWon) {return 1}
+                    else {return 0;}
                 });
 
-                this.barChartData = this.barChartData.sort(function (x, y) {
-                    if(x.data[0] > y.data[0]) {return -1;}
-                    else if (x.data[0] < y.data[0]) {return 1;}
-                    else {return 0;}
+                this.barChartData = [];
+                this.colorScheme.domain = [];
+                result.map(player => {
+                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWon]});
+                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
                 });
 
                 this.graphTitle = 'Games Won';
@@ -105,18 +109,18 @@ export class DashboardComponent implements OnInit {
         this.showChart = false;
         this.playerService.getPlayers()
             .then(result => {
-                //Something like this if I ever want to only get the first few
-                //this.players = result.slice(1, 5);
 
-                this.barChartData = [];
-                result.map(player => {
-                    this.barChartData.push({data: [player.pointsPerGame], label: player.firstName + ' ' + player.lastName + ' - ' + player.nickName});
+                result = result.sort(function(x, y) {
+                    if(x.pointsPerGame > y.pointsPerGame) {return -1}
+                    else if (x.pointsPerGame < y.pointsPerGame) {return 1}
+                    else {return 0;}
                 });
 
-                this.barChartData = this.barChartData.sort(function (x, y) {
-                    if(x.data[0] > y.data[0]) {return -1;}
-                    else if (x.data[0] < y.data[0]) {return 1;}
-                    else {return 0;}
+                this.barChartData = [];
+                this.colorScheme.domain = [];
+                result.map(player => {
+                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.pointsPerGame]});
+                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
                 });
 
                 this.graphTitle = 'Points Per Game';
