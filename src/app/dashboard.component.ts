@@ -105,6 +105,29 @@ export class DashboardComponent implements OnInit {
             });
     }
 
+    loadGamesWonPct(): void {
+        this.showChart = false;
+        this.playerService.getPlayers()
+            .then(result => {
+                
+                result = result.sort(function(x, y) {
+                    if(x.gamesWonPct > y.gamesWonPct) {return -1}
+                    else if (x.gamesWonPct < y.gamesWonPct) {return 1}
+                    else {return 0;}
+                });
+
+                this.barChartData = [];
+                this.colorScheme.domain = [];
+                result.map(player => {
+                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWonPct]});
+                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                });
+
+                this.graphTitle = 'Games Won';
+                this.showChart = true;
+            });
+    }
+
     loadPointsPerGame(): void {
         this.showChart = false;
         this.playerService.getPlayers()

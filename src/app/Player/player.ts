@@ -7,6 +7,7 @@ export class Player {
     hexColor: string;
     gamesPlayed: number;
     gamesWon: number;
+    gamesWonPct: number;
     totalPointsScored: number;
     totalPointsAllowed: number;
     pointsPerGame: number;

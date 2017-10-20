@@ -1120,7 +1120,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>{{graphTitle}}</h3>\r\n<div class=\"sizedchart\">\r\n    <!-- [view]=\"view\" -->\r\n    <ngx-charts-bar-vertical\r\n    *ngIf=\"showChart\"\r\n    [scheme]=\"colorScheme\"\r\n    [results]=\"barChartData\"\r\n    [gradient]=\"gradient\"\r\n    [xAxis]=\"showXAxis\"\r\n    [yAxis]=\"showYAxis\"\r\n    [legend]=\"showLegend\"\r\n    [showXAxisLabel]=\"showXAxisLabel\"\r\n    [showYAxisLabel]=\"showYAxisLabel\"\r\n    [xAxisLabel]=\"xAxisLabel\"\r\n    [yAxisLabel]=\"yAxisLabel\">\r\n    </ngx-charts-bar-vertical>\r\n</div>\r\n<div class=\"grid grid-pad\">\r\n    <div class=\"col-1-4\" (click)=\"loadGamesPlayed()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Games Played</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadGamesWon()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Games Won</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadPointsPerGame()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Most William</h4>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<h3>{{graphTitle}}</h3>\r\n<div class=\"sizedchart\">\r\n    <!-- [view]=\"view\" -->\r\n    <ngx-charts-bar-vertical\r\n    *ngIf=\"showChart\"\r\n    [scheme]=\"colorScheme\"\r\n    [results]=\"barChartData\"\r\n    [gradient]=\"gradient\"\r\n    [xAxis]=\"showXAxis\"\r\n    [yAxis]=\"showYAxis\"\r\n    [legend]=\"showLegend\"\r\n    [showXAxisLabel]=\"showXAxisLabel\"\r\n    [showYAxisLabel]=\"showYAxisLabel\"\r\n    [xAxisLabel]=\"xAxisLabel\"\r\n    [yAxisLabel]=\"yAxisLabel\">\r\n    </ngx-charts-bar-vertical>\r\n</div>\r\n<div class=\"grid grid-pad\">\r\n    <div class=\"col-1-4\" (click)=\"loadGamesPlayed()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Games Played</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadGamesWon()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Games Won</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadGamesWonPct()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Games Won %</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadPointsPerGame()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Most William</h4>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -1235,6 +1235,32 @@ var DashboardComponent = (function () {
             _this.colorScheme.domain = [];
             result.map(function (player) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWon] });
+                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+            });
+            _this.graphTitle = 'Games Won';
+            _this.showChart = true;
+        });
+    };
+    DashboardComponent.prototype.loadGamesWonPct = function () {
+        var _this = this;
+        this.showChart = false;
+        this.playerService.getPlayers()
+            .then(function (result) {
+            result = result.sort(function (x, y) {
+                if (x.gamesWonPct > y.gamesWonPct) {
+                    return -1;
+                }
+                else if (x.gamesWonPct < y.gamesWonPct) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            _this.barChartData = [];
+            _this.colorScheme.domain = [];
+            result.map(function (player) {
+                _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWonPct] });
                 _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
             });
             _this.graphTitle = 'Games Won';
