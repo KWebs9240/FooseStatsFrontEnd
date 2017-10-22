@@ -12,23 +12,24 @@
     [showXAxisLabel]="showXAxisLabel"
     [showYAxisLabel]="showYAxisLabel"
     [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel">
+    [yAxisLabel]="yAxisLabel"
+    [yScaleMax]="yScaleMax">
     </ngx-charts-bar-vertical>
 </div>
 <div class="grid grid-pad">
-    <div class="col-1-4" (click)="loadGamesPlayed()"> <!--[routerLink]="['/detail', hero.id]"-->
-        <div class="module hero">
-            <h4>Games Played</h4>
-        </div>
-    </div>
     <div class="col-1-4" (click)="loadGamesWon()"> <!--[routerLink]="['/detail', hero.id]"-->
         <div class="module hero">
             <h4>Games Won</h4>
         </div>
     </div>
+    <div class="col-1-4" (click)="loadGamesPlayed()"> <!--[routerLink]="['/detail', hero.id]"-->
+        <div class="module hero">
+            <h4>Games Played</h4>
+        </div>
+    </div>
     <div class="col-1-4" (click)="loadGamesWonPct()"> <!--[routerLink]="['/detail', hero.id]"-->
         <div class="module hero">
-            <h4>Games Won %</h4>
+            <h4>Win %</h4>
         </div>
     </div>
     <div class="col-1-4" (click)="loadPointsPerGame()"> <!--[routerLink]="['/detail', hero.id]"-->

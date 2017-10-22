@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
     xAxisLabel = 'Player';
     showYAxisLabel = false;
     yAxisLabel = 'Games';
+    yScaleMax = 0;
   
     colorScheme = {
       domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -36,27 +37,7 @@ export class DashboardComponent implements OnInit {
     constructor(private playerService: PlayerService) { }
 
     ngOnInit(): void {
-        this.showChart = false;
-        this.playerService.getPlayers()
-            .then(result => {
-
-                result = result.sort(function(x, y) {
-                    if(x.gamesPlayed > y.gamesPlayed) {return -1}
-                    else if (x.gamesPlayed < y.gamesPlayed) {return 1}
-                    else {return 0;}
-                });
-
-                this.barChartData = [];
-                this.colorScheme.domain = [];
-                result.map(player => {
-                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesPlayed]});
-                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
-                });
-
-                
-                this.graphTitle = 'Games Played';
-                this.showChart = true;
-            });
+        this.loadGamesWon();
     }
 
     loadGamesPlayed(): void {
@@ -123,6 +104,7 @@ export class DashboardComponent implements OnInit {
                     this.colorScheme.domain.push(player.hexColor || '#1f53d9');
                 });
 
+                this.yScaleMax = 100;
                 this.graphTitle = 'Games Won';
                 this.showChart = true;
             });
@@ -146,6 +128,7 @@ export class DashboardComponent implements OnInit {
                     this.colorScheme.domain.push(player.hexColor || '#1f53d9');
                 });
 
+                this.yScaleMax = 8;
                 this.graphTitle = 'Points Per Game';
                 this.showChart = true;
             });
