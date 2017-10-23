@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit {
                     this.colorScheme.domain.push(player.hexColor || '#1f53d9');
                 });
 
+                this.yScaleMax = 0;
                 this.graphTitle = 'Games Played';
                 this.showChart = true;
             });
@@ -81,6 +82,7 @@ export class DashboardComponent implements OnInit {
                     this.colorScheme.domain.push(player.hexColor || '#1f53d9');
                 });
 
+                this.yScaleMax = 0;
                 this.graphTitle = 'Games Won';
                 this.showChart = true;
             });
