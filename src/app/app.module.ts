@@ -24,6 +24,7 @@ import { MatchTypeManagementComponent } from './MatchType/match-type-management.
 import { MatchTypeService } from './MatchType/match-type.service';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   providers: [
@@ -39,6 +40,7 @@ import { AppRoutingModule } from './app-routing.module';
     NgxChartsModule,
     BrowserAnimationsModule,
     ColorPickerModule,
+    ReactiveFormsModule,
     //InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   declarations: [ 

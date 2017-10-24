@@ -1,3 +1,6 @@
+<select [(ngModel)]="selectedMatchTypeId" [formControl]="matchTypeControl">
+    <option *ngFor="let matchType of allMatchTypes" [ngValue]="matchType.matchTypeId">{{matchType.matchTypeDescription}}</option>
+</select>
 <h3>{{graphTitle}}</h3>
 <div class="sizedchart">
     <!-- [view]="view" -->

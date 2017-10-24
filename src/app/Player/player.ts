@@ -5,10 +5,10 @@ export class Player {
     nickName: string;
     updateDate: Date;
     hexColor: string;
-    gamesPlayed: number;
-    gamesWon: number;
-    gamesWonPct: number;
-    totalPointsScored: number;
-    totalPointsAllowed: number;
-    pointsPerGame: number;
+    gamesPlayed: Map<string, number>;
+    gamesWon: Map<string, number>;
+    gamesWonPct: Map<string, number>;
+    totalPointsScored: Map<string, number>;
+    totalPointsAllowed: Map<string, number>;
+    pointsPerGame: Map<string, number>;
 }
