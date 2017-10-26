@@ -1224,8 +1224,10 @@ var DashboardComponent = (function () {
             _this.barChartData = [];
             _this.colorScheme.domain = [];
             result.map(function (player) {
-                _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesPlayed[_this.selectedMatchTypeId]] });
-                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                if (player.gamesPlayed[_this.selectedMatchTypeId] > 0) {
+                    _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesPlayed[_this.selectedMatchTypeId]] });
+                    _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                }
             });
             _this.yScaleMax = 0;
             _this.graphTitle = 'Games Played';
@@ -1251,8 +1253,10 @@ var DashboardComponent = (function () {
             _this.barChartData = [];
             _this.colorScheme.domain = [];
             result.map(function (player) {
-                _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWon[_this.selectedMatchTypeId]] });
-                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                if (player.gamesPlayed[_this.selectedMatchTypeId] > 0) {
+                    _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWon[_this.selectedMatchTypeId]] });
+                    _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                }
             });
             _this.yScaleMax = 0;
             _this.graphTitle = 'Games Won';
@@ -1278,8 +1282,10 @@ var DashboardComponent = (function () {
             _this.barChartData = [];
             _this.colorScheme.domain = [];
             result.map(function (player) {
-                _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWonPct[_this.selectedMatchTypeId]] });
-                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                if (player.gamesPlayed[_this.selectedMatchTypeId] > 0) {
+                    _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWonPct[_this.selectedMatchTypeId]] });
+                    _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                }
             });
             _this.yScaleMax = 100;
             _this.graphTitle = 'Win %';
@@ -1305,8 +1311,10 @@ var DashboardComponent = (function () {
             _this.barChartData = [];
             _this.colorScheme.domain = [];
             result.map(function (player) {
-                _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.pointsPerGame[_this.selectedMatchTypeId]] });
-                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                if (player.gamesPlayed[_this.selectedMatchTypeId] > 0) {
+                    _this.barChartData.push({ name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.pointsPerGame[_this.selectedMatchTypeId]] });
+                    _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                }
             });
             _this.yScaleMax = 8;
             _this.graphTitle = 'Points Per Game';

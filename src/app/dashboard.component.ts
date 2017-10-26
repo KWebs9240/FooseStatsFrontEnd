@@ -94,8 +94,10 @@ export class DashboardComponent implements OnInit {
                 this.barChartData = [];
                 this.colorScheme.domain = [];
                 result.map(player => {
-                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesPlayed[this.selectedMatchTypeId]]});
-                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                    if(player.gamesPlayed[this.selectedMatchTypeId] > 0) {
+                        this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesPlayed[this.selectedMatchTypeId]]});
+                        this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                    }
                 });
 
                 this.yScaleMax = 0;
@@ -118,8 +120,10 @@ export class DashboardComponent implements OnInit {
                 this.barChartData = [];
                 this.colorScheme.domain = [];
                 result.map(player => {
-                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWon[this.selectedMatchTypeId]]});
-                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                    if(player.gamesPlayed[this.selectedMatchTypeId] > 0) {
+                        this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWon[this.selectedMatchTypeId]]});
+                        this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                    }
                 });
 
                 this.yScaleMax = 0;
@@ -142,8 +146,10 @@ export class DashboardComponent implements OnInit {
                 this.barChartData = [];
                 this.colorScheme.domain = [];
                 result.map(player => {
-                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWonPct[this.selectedMatchTypeId]]});
-                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                    if(player.gamesPlayed[this.selectedMatchTypeId] > 0) {
+                        this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.gamesWonPct[this.selectedMatchTypeId]]});
+                        this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                    }
                 });
 
                 this.yScaleMax = 100;
@@ -166,8 +172,10 @@ export class DashboardComponent implements OnInit {
                 this.barChartData = [];
                 this.colorScheme.domain = [];
                 result.map(player => {
-                    this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.pointsPerGame[this.selectedMatchTypeId]]});
-                    this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                    if(player.gamesPlayed[this.selectedMatchTypeId] > 0) {
+                        this.barChartData.push({name: player.firstName + ' ' + player.lastName + ' - ' + player.nickName, value: [player.pointsPerGame[this.selectedMatchTypeId]]});
+                        this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+                    }
                 });
 
                 this.yScaleMax = 8;
