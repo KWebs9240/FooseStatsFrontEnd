@@ -15,7 +15,7 @@ import { FormControl } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
 
-    private matchTypeControl = new FormControl();
+    matchTypeControl = new FormControl();
 
     players: Player[] = [];
     graphTitle: string = '';
