@@ -501,10 +501,28 @@ var MatchType = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/Player/PlayerDetail/player-detail.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "[class*='col-'] {\r\n  float: left;\r\n  padding-right: 20px;\r\n  padding-bottom: 20px;\r\n}\r\n[class*='col-']:last-of-type {\r\n  padding-right: 0;\r\n}\r\na {\r\n  text-decoration: none;\r\n}\r\n*, *:after, *:before {\r\n  box-sizing: border-box;\r\n}\r\nh3 {\r\n  text-align: center; margin-bottom: 0;\r\n}\r\nh4 {\r\n  position: relative;\r\n}\r\n.grid {\r\n  margin: 0;\r\n}\r\n.col-1-4 {\r\n  width: 25%;\r\n}\r\n.sizedchart {\r\n  width: 100%;\r\n  height: 500px;\r\n}\r\n.module {\r\n  padding: 20px;\r\n  text-align: center;\r\n  color: #eee;\r\n  max-height: 120px;\r\n  min-width: 120px;\r\n  background-color: #607D8B;\r\n  border-radius: 2px;\r\n}\r\n.module:hover {\r\n  background-color: #EEE;\r\n  cursor: pointer;\r\n  color: #607d8b;\r\n}\r\n.grid-pad {\r\n  padding: 10px 0;\r\n}\r\n.grid-pad > [class*='col-']:last-of-type {\r\n  padding-right: 20px;\r\n}\r\n@media (max-width: 600px) {\r\n  .module {\r\n    font-size: 10px;\r\n    max-height: 75px; }\r\n}\r\n@media (max-width: 1024px) {\r\n  .grid {\r\n    margin: 0;\r\n  }\r\n  .module {\r\n    min-width: 60px;\r\n  }\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/Player/PlayerDetail/player-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"player\">\r\n    <h2>{{player.firstName}} {{player.lastName}} - {{player.nickName}} details</h2>\r\n    <button (click)=\"modifyPlayer()\">Modify Player</button>\r\n    <button (click)=\"deletePlayer()\">Delete Player</button>\r\n    <a *ngFor=\"let match of playedMatches\" [routerLink]=\"['/matchcreate', match.matchId]\">\r\n        <li>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>\r\n    </a> \r\n\r\n    <!-- <div>\r\n        <label>name: </label>\r\n        <input [(ngModel)]=\"hero.name\" placeholder=\"name\">\r\n    </div>\r\n    <button (click)=\"goBack()\">Back</button>\r\n    <button (click)=\"save()\">Save</button>  -->\r\n</div>"
+module.exports = "<div *ngIf=\"player\">\r\n        <h2>{{player.firstName}} {{player.lastName}} - {{player.nickName}} details</h2>\r\n        <select [(ngModel)]=\"selectedMatchTypeId\" [formControl]=\"matchTypeControl\">\r\n                <option *ngFor=\"let matchType of allMatchTypes\" [ngValue]=\"matchType.matchTypeId\">{{matchType.matchTypeDescription}}</option>\r\n        </select>\r\n        <h3>{{graphTitle}}</h3>\r\n        <div class=\"sizedchart\">\r\n                <!-- [view]=\"view\" -->\r\n                <ngx-charts-bar-vertical-2d\r\n                *ngIf=\"showChart\"\r\n                [scheme]=\"colorScheme\"\r\n                [results]=\"barChartData\"\r\n                [gradient]=\"gradient\"\r\n                [xAxis]=\"showXAxis\"\r\n                [yAxis]=\"showYAxis\"\r\n                [legend]=\"showLegend\"\r\n                [showXAxisLabel]=\"showXAxisLabel\"\r\n                [showYAxisLabel]=\"showYAxisLabel\"\r\n                [xAxisLabel]=\"xAxisLabel\"\r\n                [yAxisLabel]=\"yAxisLabel\"\r\n                [yScaleMax]=\"yScaleMax\">\r\n                </ngx-charts-bar-vertical-2d>\r\n                <div class=\"grid grid-pad\">\r\n                        <div class=\"col-1-4\" (click)=\"loadGamesWon()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Games Won</h4>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"col-1-4\" (click)=\"loadGamesPlayed()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Games Played</h4>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"col-1-4\" (click)=\"loadGamesWonPct()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Win %</h4>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"col-1-4\" (click)=\"loadPointsPerGame()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Most William</h4>\r\n                                </div>\r\n                        </div>\r\n                </div>\r\n        </div>\r\n        <button (click)=\"modifyPlayer()\">Modify Player</button>\r\n        <button (click)=\"deletePlayer()\">Delete Player</button>\r\n        <a *ngFor=\"let match of playedMatches\" [routerLink]=\"['/matchcreate', match.matchId]\">\r\n                <li>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>\r\n        </a>\r\n</div>"
 
 /***/ }),
 
@@ -517,11 +535,14 @@ module.exports = "<div *ngIf=\"player\">\r\n    <h2>{{player.firstName}} {{playe
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Match_match_service__ = __webpack_require__("../../../../../src/app/Match/match.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/add/operator/switchMap.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_do__ = __webpack_require__("../../../../rxjs/add/operator/do.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_do__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rival_service__ = __webpack_require__("../../../../../src/app/Player/rival.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Match_match_service__ = __webpack_require__("../../../../../src/app/Match/match.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/add/operator/switchMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_switchMap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_do__ = __webpack_require__("../../../../rxjs/add/operator/do.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_do__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -538,18 +559,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var PlayerDetailComponent = (function () {
-    function PlayerDetailComponent(playerService, matchService, activatedRoute, location, router) {
+    function PlayerDetailComponent(playerService, rivalService, matchService, activatedRoute, location, router, matchTypeService) {
         this.playerService = playerService;
+        this.rivalService = rivalService;
         this.matchService = matchService;
         this.activatedRoute = activatedRoute;
         this.location = location;
         this.router = router;
+        this.matchTypeService = matchTypeService;
+        this.matchTypeControl = new __WEBPACK_IMPORTED_MODULE_7__angular_forms__["a" /* FormControl */]();
+        this.allMatchTypes = [];
+        this.selectedMatchTypeId = '';
+        // options
+        this.showXAxis = true;
+        this.showYAxis = true;
+        this.gradient = false;
+        this.showLegend = true;
+        this.showXAxisLabel = false;
+        this.xAxisLabel = 'Player';
+        this.showYAxisLabel = false;
+        this.yAxisLabel = 'Games';
+        this.yScaleMax = 0;
+        this.colorScheme = {
+            domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+        };
+        this.barChartData = [];
+        this.showChart = false;
+        this.graphTitle = '';
     }
     PlayerDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        //Still a block but switching to do might get me through it for now
-        //Nope, still stuck actually learning something and sinking a decent amount of time into this one
+        this.matchTypeControl = new __WEBPACK_IMPORTED_MODULE_7__angular_forms__["a" /* FormControl */]();
         this.activatedRoute.params
             .switchMap(function (params) {
             return _this.playerService.getPlayer(params['id']);
@@ -557,6 +601,37 @@ var PlayerDetailComponent = (function () {
             _this.player = foundPlayer;
             _this.matchService.getPlayerMatches(foundPlayer.playerId)
                 .then(function (resultMatches) { return _this.playedMatches = resultMatches; });
+            _this.rivalService.getRivals(foundPlayer.playerId)
+                .then(function (resultRivals) { return _this.rivalPlayers = resultRivals; })
+                .then(function () { return _this.matchTypeService.getMatchTypes(); })
+                .then(function (matchTypes) {
+                _this.allMatchTypes = matchTypes;
+                _this.selectedMatchTypeId = _this.allMatchTypes[0].matchTypeId;
+            })
+                .then(function () {
+                _this.loadGamesWon();
+            })
+                .then(function () {
+                var test = _this.matchTypeControl.valueChanges;
+                test.subscribe(function (value) {
+                    switch (_this.graphTitle) {
+                        case 'Games Won':
+                            _this.loadGamesWon();
+                            break;
+                        case 'Games Played':
+                            _this.loadGamesPlayed();
+                            break;
+                        case 'Win %':
+                            _this.loadGamesWonPct();
+                            break;
+                        case 'Points Per Game':
+                            _this.loadPointsPerGame();
+                            break;
+                        default:
+                            _this.loadGamesWon();
+                    }
+                });
+            });
         });
     };
     PlayerDetailComponent.prototype.goBack = function () {
@@ -576,17 +651,135 @@ var PlayerDetailComponent = (function () {
         var route = './playercreate/' + this.player.playerId;
         this.router.navigate([route]);
     };
+    PlayerDetailComponent.prototype.loadGamesPlayed = function () {
+        var _this = this;
+        this.showChart = false;
+        this.rivalPlayers = this.rivalPlayers.sort(function (x, y) {
+            if (x.rivalGamesPlayed[_this.selectedMatchTypeId] > y.rivalGamesPlayed[_this.selectedMatchTypeId]) {
+                return -1;
+            }
+            else if (x.rivalGamesPlayed[_this.selectedMatchTypeId] < y.rivalGamesPlayed[_this.selectedMatchTypeId]) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+        this.barChartData = [];
+        this.colorScheme.domain = [];
+        this.rivalPlayers.map(function (player) {
+            if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
+                _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
+                        { name: 'rival', value: player.rivalGamesPlayed[_this.selectedMatchTypeId] },
+                        { name: 'player', value: player.playerGamesPlayed[_this.selectedMatchTypeId] }
+                    ] });
+                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+            }
+        });
+        this.yScaleMax = 0;
+        this.graphTitle = 'Games Played';
+        this.showChart = true;
+    };
+    PlayerDetailComponent.prototype.loadGamesWon = function () {
+        var _this = this;
+        this.showChart = false;
+        var huh = this.rivalPlayers;
+        this.rivalPlayers = this.rivalPlayers.sort(function (x, y) {
+            if (x.rivalGamesWon[_this.selectedMatchTypeId] > y.rivalGamesWon[_this.selectedMatchTypeId]) {
+                return -1;
+            }
+            else if (x.rivalGamesWon[_this.selectedMatchTypeId] < y.rivalGamesWon[_this.selectedMatchTypeId]) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+        this.barChartData = [];
+        this.colorScheme.domain = [];
+        this.rivalPlayers.map(function (player) {
+            if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
+                _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
+                        { name: 'rival', value: player.rivalGamesWon[_this.selectedMatchTypeId] },
+                        { name: 'player', value: player.playerGamesWon[_this.selectedMatchTypeId] }
+                    ] });
+                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+            }
+        });
+        this.yScaleMax = 0;
+        this.graphTitle = 'Games Won';
+        this.showChart = true;
+    };
+    PlayerDetailComponent.prototype.loadGamesWonPct = function () {
+        var _this = this;
+        this.showChart = false;
+        this.rivalPlayers = this.rivalPlayers.sort(function (x, y) {
+            if (x.rivalGamesWonPct[_this.selectedMatchTypeId] > y.rivalGamesWonPct[_this.selectedMatchTypeId]) {
+                return -1;
+            }
+            else if (x.rivalGamesWonPct[_this.selectedMatchTypeId] < y.rivalGamesWonPct[_this.selectedMatchTypeId]) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+        this.barChartData = [];
+        this.colorScheme.domain = [];
+        this.rivalPlayers.map(function (player) {
+            if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
+                _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
+                        { name: 'rival', value: player.rivalGamesWonPct[_this.selectedMatchTypeId] },
+                        { name: 'player', value: player.playerGamesWonPct[_this.selectedMatchTypeId] }
+                    ] });
+                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+            }
+        });
+        this.yScaleMax = 100;
+        this.graphTitle = 'Win %';
+        this.showChart = true;
+    };
+    PlayerDetailComponent.prototype.loadPointsPerGame = function () {
+        var _this = this;
+        this.showChart = false;
+        this.rivalPlayers = this.rivalPlayers.sort(function (x, y) {
+            if (x.rivalPointsPerGame[_this.selectedMatchTypeId] > y.rivalPointsPerGame[_this.selectedMatchTypeId]) {
+                return -1;
+            }
+            else if (x.rivalPointsPerGame[_this.selectedMatchTypeId] < y.rivalPointsPerGame[_this.selectedMatchTypeId]) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+        this.barChartData = [];
+        this.colorScheme.domain = [];
+        this.rivalPlayers.map(function (player) {
+            if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
+                _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
+                        { name: 'rival', value: player.rivalPointsPerGame[_this.selectedMatchTypeId] },
+                        { name: 'player', value: player.playerPointsPerGame[_this.selectedMatchTypeId] }
+                    ] });
+                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
+            }
+        });
+        this.yScaleMax = 8;
+        this.graphTitle = 'Points Per Game';
+        this.showChart = true;
+    };
     return PlayerDetailComponent;
 }());
 PlayerDetailComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        styles: [__webpack_require__("../../../../../src/app/Player/PlayerDetail/player-detail.component.css")],
         selector: 'player-detail',
         template: __webpack_require__("../../../../../src/app/Player/PlayerDetail/player-detail.component.html")
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__Match_match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__Match_match_service__["a" /* MatchService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__rival_service__["a" /* RivalService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__rival_service__["a" /* RivalService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__Match_match_service__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__Match_match_service__["a" /* MatchService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__MatchType_match_type_service__["a" /* MatchTypeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__MatchType_match_type_service__["a" /* MatchTypeService */]) === "function" && _g || Object])
 ], PlayerDetailComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=player-detail.component.js.map
 
 /***/ }),
@@ -812,6 +1005,18 @@ var PlayerService = (function () {
             });
         }
     };
+    PlayerService.prototype.getRivals = function (playerId) {
+        var PlayersRivalAdded = this.playerUrl + '/Rivals?PlayerId=' + playerId;
+        return this.http.get(PlayersRivalAdded)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(function (error) {
+            console.error('An error occured', error);
+            return Promise.reject(error.message || error);
+        });
+    };
     PlayerService.prototype.getPlayer = function (playerId) {
         return this.getPlayers()
             .then(function (players) {
@@ -891,6 +1096,78 @@ var Player = (function () {
 }());
 
 //# sourceMappingURL=player.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/Player/rival.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RivalService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var RivalService = (function () {
+    function RivalService(http) {
+        this.http = http;
+        this.rivalsUrl = 'http://localhost:64358/api/Rivals';
+        this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
+        this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+    }
+    RivalService.prototype.getRivals = function (playerId) {
+        var _this = this;
+        var cacheCheckTime = new Date();
+        cacheCheckTime.setMinutes(cacheCheckTime.getMinutes() - 15);
+        if (this.lastCacheDate < cacheCheckTime) {
+            var MatchesParamAdded = this.rivalsUrl + '?playerId=' + playerId;
+            return this.http.get(MatchesParamAdded)
+                .toPromise()
+                .then(function (response) {
+                _this.allPlayers = response.json();
+                _this.lastCacheDate = new Date();
+                return response.json();
+            })
+                .catch(function (error) {
+                console.error('An error occured', error);
+                return Promise.reject(error.message || error);
+            });
+        }
+        else {
+            return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].of(this.allPlayers)
+                .toPromise()
+                .then(function (things) {
+                return _this.allPlayers;
+            });
+        }
+    };
+    return RivalService;
+}());
+RivalService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], RivalService);
+
+var _a;
+//# sourceMappingURL=rival.service.js.map
 
 /***/ }),
 
@@ -1026,13 +1303,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Player_player_selection_component__ = __webpack_require__("../../../../../src/app/Player/player-selection.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Player_PlayerDetail_player_detail_component__ = __webpack_require__("../../../../../src/app/Player/PlayerDetail/player-detail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Match_match_selection_component__ = __webpack_require__("../../../../../src/app/Match/match-selection.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Match_match_service__ = __webpack_require__("../../../../../src/app/Match/match.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Player_player_creation_component__ = __webpack_require__("../../../../../src/app/Player/player-creation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Match_match_creation_component__ = __webpack_require__("../../../../../src/app/Match/match-creation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Player_rival_service__ = __webpack_require__("../../../../../src/app/Player/rival.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Match_match_selection_component__ = __webpack_require__("../../../../../src/app/Match/match-selection.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Match_match_service__ = __webpack_require__("../../../../../src/app/Match/match.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Player_player_creation_component__ = __webpack_require__("../../../../../src/app/Player/player-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Match_match_creation_component__ = __webpack_require__("../../../../../src/app/Match/match-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1061,6 +1339,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -1069,14 +1348,15 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         providers: [
-            __WEBPACK_IMPORTED_MODULE_13__Match_match_service__["a" /* MatchService */],
+            __WEBPACK_IMPORTED_MODULE_14__Match_match_service__["a" /* MatchService */],
             __WEBPACK_IMPORTED_MODULE_11__Player_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_17__MatchType_match_type_service__["a" /* MatchTypeService */],
+            __WEBPACK_IMPORTED_MODULE_12__Player_rival_service__["a" /* RivalService */],
+            __WEBPACK_IMPORTED_MODULE_18__MatchType_match_type_service__["a" /* MatchTypeService */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["BrowserModule"],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_18__app_routing_module__["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_19__app_routing_module__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_4__swimlane_ngx_charts__["NgxChartsModule"],
             __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
@@ -1088,10 +1368,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_8__dashboard_component__["a" /* DashboardComponent */],
             __WEBPACK_IMPORTED_MODULE_9__Player_player_selection_component__["a" /* PlayerSelectionComponent */],
             __WEBPACK_IMPORTED_MODULE_10__Player_PlayerDetail_player_detail_component__["a" /* PlayerDetailComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__Match_match_selection_component__["a" /* MatchSelectionComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__Player_player_creation_component__["a" /* PlayerCreationComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__Match_match_creation_component__["a" /* MatchCreationComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__Match_match_selection_component__["a" /* MatchSelectionComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__Player_player_creation_component__["a" /* PlayerCreationComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__Match_match_creation_component__["a" /* MatchCreationComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */],
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })

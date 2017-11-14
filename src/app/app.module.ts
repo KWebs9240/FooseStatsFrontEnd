@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard.component';
 import { PlayerSelectionComponent } from './Player/player-selection.component';
 import { PlayerDetailComponent } from './Player/PlayerDetail/player-detail.component';
 import { PlayerService } from './Player/player.service';
+import { RivalService } from './Player/rival.service';
 import { MatchSelectionComponent } from './Match/match-selection.component';
 import { MatchService } from './Match/match.service';
 import { PlayerCreationComponent } from './Player/player-creation.component';
@@ -30,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [
     MatchService,
     PlayerService,
+    RivalService,
     MatchTypeService,
   ],
   imports: [

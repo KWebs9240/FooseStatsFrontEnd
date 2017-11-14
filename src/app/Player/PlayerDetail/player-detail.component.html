@@ -1,15 +1,51 @@
 <div *ngIf="player">
-    <h2>{{player.firstName}} {{player.lastName}} - {{player.nickName}} details</h2>
-    <button (click)="modifyPlayer()">Modify Player</button>
-    <button (click)="deletePlayer()">Delete Player</button>
-    <a *ngFor="let match of playedMatches" [routerLink]="['/matchcreate', match.matchId]">
-        <li>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>
-    </a> 
-
-    <!-- <div>
-        <label>name: </label>
-        <input [(ngModel)]="hero.name" placeholder="name">
-    </div>
-    <button (click)="goBack()">Back</button>
-    <button (click)="save()">Save</button>  -->
+        <h2>{{player.firstName}} {{player.lastName}} - {{player.nickName}} details</h2>
+        <select [(ngModel)]="selectedMatchTypeId" [formControl]="matchTypeControl">
+                <option *ngFor="let matchType of allMatchTypes" [ngValue]="matchType.matchTypeId">{{matchType.matchTypeDescription}}</option>
+        </select>
+        <h3>{{graphTitle}}</h3>
+        <div class="sizedchart">
+                <!-- [view]="view" -->
+                <ngx-charts-bar-vertical-2d
+                *ngIf="showChart"
+                [scheme]="colorScheme"
+                [results]="barChartData"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [yScaleMax]="yScaleMax">
+                </ngx-charts-bar-vertical-2d>
+                <div class="grid grid-pad">
+                        <div class="col-1-4" (click)="loadGamesWon()"> <!--[routerLink]="['/detail', hero.id]"-->
+                                <div class="module hero">
+                                <h4>Games Won</h4>
+                                </div>
+                        </div>
+                        <div class="col-1-4" (click)="loadGamesPlayed()"> <!--[routerLink]="['/detail', hero.id]"-->
+                                <div class="module hero">
+                                <h4>Games Played</h4>
+                                </div>
+                        </div>
+                        <div class="col-1-4" (click)="loadGamesWonPct()"> <!--[routerLink]="['/detail', hero.id]"-->
+                                <div class="module hero">
+                                <h4>Win %</h4>
+                                </div>
+                        </div>
+                        <div class="col-1-4" (click)="loadPointsPerGame()"> <!--[routerLink]="['/detail', hero.id]"-->
+                                <div class="module hero">
+                                <h4>Most William</h4>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <button (click)="modifyPlayer()">Modify Player</button>
+        <button (click)="deletePlayer()">Delete Player</button>
+        <a *ngFor="let match of playedMatches" [routerLink]="['/matchcreate', match.matchId]">
+                <li>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>
+        </a>
 </div>
