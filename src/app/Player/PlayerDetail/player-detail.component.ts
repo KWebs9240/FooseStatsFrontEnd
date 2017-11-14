@@ -131,13 +131,14 @@ export class PlayerDetailComponent implements OnInit{
 
         this.barChartData = [];
         this.colorScheme.domain = [];
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
         this.rivalPlayers.map(player => {
             if(player.rivalGamesPlayed[this.selectedMatchTypeId] > 0) {
                 this.barChartData.push({name: player.firstName + ' ' + player.lastName, series: [ 
                     {name: 'rival', value: player.rivalGamesPlayed[this.selectedMatchTypeId]},
                     { name: 'player', value: player.playerGamesPlayed[this.selectedMatchTypeId] }
                 ]});
-                this.colorScheme.domain.push(player.hexColor || '#1f53d9');
             }
         });
 
@@ -157,13 +158,14 @@ export class PlayerDetailComponent implements OnInit{
 
         this.barChartData = [];
         this.colorScheme.domain = [];
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
         this.rivalPlayers.map(player => {
             if(player.rivalGamesPlayed[this.selectedMatchTypeId] > 0) {
                 this.barChartData.push({name: player.firstName + ' ' + player.lastName, series: [
                     { name: 'rival', value: player.rivalGamesWon[this.selectedMatchTypeId] },
                     { name: 'player', value: player.playerGamesWon[this.selectedMatchTypeId] }
                 ]});
-                this.colorScheme.domain.push(player.hexColor || '#1f53d9');
             }
         });
 
@@ -182,13 +184,14 @@ export class PlayerDetailComponent implements OnInit{
 
         this.barChartData = [];
         this.colorScheme.domain = [];
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
         this.rivalPlayers.map(player => {
             if(player.rivalGamesPlayed[this.selectedMatchTypeId] > 0) {
                 this.barChartData.push({name: player.firstName + ' ' + player.lastName, series: [
                     { name: 'rival', value: player.rivalGamesWonPct[this.selectedMatchTypeId] },
                     { name: 'player', value: player.playerGamesWonPct[this.selectedMatchTypeId] }
                 ]});
-                this.colorScheme.domain.push(player.hexColor || '#1f53d9');
             }
         });
 
@@ -207,13 +210,14 @@ export class PlayerDetailComponent implements OnInit{
 
         this.barChartData = [];
         this.colorScheme.domain = [];
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
         this.rivalPlayers.map(player => {
             if(player.rivalGamesPlayed[this.selectedMatchTypeId] > 0) {
                 this.barChartData.push({name: player.firstName + ' ' + player.lastName, series: [
                     { name: 'rival', value: player.rivalPointsPerGame[this.selectedMatchTypeId] },
                     { name: 'player', value: player.playerPointsPerGame[this.selectedMatchTypeId] }
                 ]});
-                this.colorScheme.domain.push(player.hexColor || '#1f53d9');
             }
         });
 

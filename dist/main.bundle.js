@@ -667,13 +667,14 @@ var PlayerDetailComponent = (function () {
         });
         this.barChartData = [];
         this.colorScheme.domain = [];
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
                         { name: 'rival', value: player.rivalGamesPlayed[_this.selectedMatchTypeId] },
                         { name: 'player', value: player.playerGamesPlayed[_this.selectedMatchTypeId] }
                     ] });
-                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
             }
         });
         this.yScaleMax = 0;
@@ -697,13 +698,14 @@ var PlayerDetailComponent = (function () {
         });
         this.barChartData = [];
         this.colorScheme.domain = [];
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
                         { name: 'rival', value: player.rivalGamesWon[_this.selectedMatchTypeId] },
                         { name: 'player', value: player.playerGamesWon[_this.selectedMatchTypeId] }
                     ] });
-                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
             }
         });
         this.yScaleMax = 0;
@@ -726,13 +728,14 @@ var PlayerDetailComponent = (function () {
         });
         this.barChartData = [];
         this.colorScheme.domain = [];
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
                         { name: 'rival', value: player.rivalGamesWonPct[_this.selectedMatchTypeId] },
                         { name: 'player', value: player.playerGamesWonPct[_this.selectedMatchTypeId] }
                     ] });
-                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
             }
         });
         this.yScaleMax = 100;
@@ -755,13 +758,14 @@ var PlayerDetailComponent = (function () {
         });
         this.barChartData = [];
         this.colorScheme.domain = [];
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
                         { name: 'rival', value: player.rivalPointsPerGame[_this.selectedMatchTypeId] },
                         { name: 'player', value: player.playerPointsPerGame[_this.selectedMatchTypeId] }
                     ] });
-                _this.colorScheme.domain.push(player.hexColor || '#1f53d9');
             }
         });
         this.yScaleMax = 8;
@@ -1004,18 +1008,6 @@ var PlayerService = (function () {
                 return _this.allPlayers;
             });
         }
-    };
-    PlayerService.prototype.getRivals = function (playerId) {
-        var PlayersRivalAdded = this.playerUrl + '/Rivals?PlayerId=' + playerId;
-        return this.http.get(PlayersRivalAdded)
-            .toPromise()
-            .then(function (response) {
-            return response.json();
-        })
-            .catch(function (error) {
-            console.error('An error occured', error);
-            return Promise.reject(error.message || error);
-        });
     };
     PlayerService.prototype.getPlayer = function (playerId) {
         return this.getPlayers()
