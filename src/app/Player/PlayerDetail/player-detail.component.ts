@@ -24,6 +24,7 @@ import 'rxjs/add/operator/do';
 export class PlayerDetailComponent implements OnInit{
     player: Player;
     playedMatches: Match[];
+    filteredMatches: Match[];
     rivalPlayers: Rival[];
 
     matchTypeControl = new FormControl();
@@ -81,6 +82,8 @@ export class PlayerDetailComponent implements OnInit{
                         let test = this.matchTypeControl.valueChanges
                         
                                 test.subscribe(value => {
+                                    this.filteredMatches = this.playedMatches.filter(x => x.matchTypeId === value)
+
                                     switch(this.graphTitle) {
                                         case 'Games Won':
                                             this.loadGamesWon();

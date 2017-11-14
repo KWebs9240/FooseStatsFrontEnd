@@ -522,7 +522,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/Player/PlayerDetail/player-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"player\">\r\n        <h2>{{player.firstName}} {{player.lastName}} - {{player.nickName}} details</h2>\r\n        <select [(ngModel)]=\"selectedMatchTypeId\" [formControl]=\"matchTypeControl\">\r\n                <option *ngFor=\"let matchType of allMatchTypes\" [ngValue]=\"matchType.matchTypeId\">{{matchType.matchTypeDescription}}</option>\r\n        </select>\r\n        <h3>{{graphTitle}}</h3>\r\n        <div class=\"sizedchart\">\r\n                <!-- [view]=\"view\" -->\r\n                <ngx-charts-bar-vertical-2d\r\n                *ngIf=\"showChart\"\r\n                [scheme]=\"colorScheme\"\r\n                [results]=\"barChartData\"\r\n                [gradient]=\"gradient\"\r\n                [xAxis]=\"showXAxis\"\r\n                [yAxis]=\"showYAxis\"\r\n                [legend]=\"showLegend\"\r\n                [showXAxisLabel]=\"showXAxisLabel\"\r\n                [showYAxisLabel]=\"showYAxisLabel\"\r\n                [xAxisLabel]=\"xAxisLabel\"\r\n                [yAxisLabel]=\"yAxisLabel\"\r\n                [yScaleMax]=\"yScaleMax\">\r\n                </ngx-charts-bar-vertical-2d>\r\n                <div class=\"grid grid-pad\">\r\n                        <div class=\"col-1-4\" (click)=\"loadGamesWon()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Games Won</h4>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"col-1-4\" (click)=\"loadGamesPlayed()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Games Played</h4>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"col-1-4\" (click)=\"loadGamesWonPct()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Win %</h4>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"col-1-4\" (click)=\"loadPointsPerGame()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Most William</h4>\r\n                                </div>\r\n                        </div>\r\n                </div>\r\n        </div>\r\n        <button (click)=\"modifyPlayer()\">Modify Player</button>\r\n        <button (click)=\"deletePlayer()\">Delete Player</button>\r\n        <a *ngFor=\"let match of playedMatches\" [routerLink]=\"['/matchcreate', match.matchId]\">\r\n                <li>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>\r\n        </a>\r\n</div>"
+module.exports = "<div *ngIf=\"player\">\r\n        <h2>{{player.firstName}} {{player.lastName}} - {{player.nickName}} details</h2>\r\n        <select [(ngModel)]=\"selectedMatchTypeId\" [formControl]=\"matchTypeControl\">\r\n                <option *ngFor=\"let matchType of allMatchTypes\" [ngValue]=\"matchType.matchTypeId\">{{matchType.matchTypeDescription}}</option>\r\n        </select>\r\n        <h3>{{graphTitle}}</h3>\r\n        <div class=\"sizedchart\">\r\n                <!-- [view]=\"view\" -->\r\n                <ngx-charts-bar-vertical-2d\r\n                *ngIf=\"showChart\"\r\n                [scheme]=\"colorScheme\"\r\n                [results]=\"barChartData\"\r\n                [gradient]=\"gradient\"\r\n                [xAxis]=\"showXAxis\"\r\n                [yAxis]=\"showYAxis\"\r\n                [legend]=\"showLegend\"\r\n                [showXAxisLabel]=\"showXAxisLabel\"\r\n                [showYAxisLabel]=\"showYAxisLabel\"\r\n                [xAxisLabel]=\"xAxisLabel\"\r\n                [yAxisLabel]=\"yAxisLabel\"\r\n                [yScaleMax]=\"yScaleMax\">\r\n                </ngx-charts-bar-vertical-2d>\r\n                <div class=\"grid grid-pad\">\r\n                        <div class=\"col-1-4\" (click)=\"loadGamesWon()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Games Won</h4>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"col-1-4\" (click)=\"loadGamesPlayed()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Games Played</h4>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"col-1-4\" (click)=\"loadGamesWonPct()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Win %</h4>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"col-1-4\" (click)=\"loadPointsPerGame()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n                                <div class=\"module hero\">\r\n                                <h4>Most William</h4>\r\n                                </div>\r\n                        </div>\r\n                </div>\r\n        </div>\r\n        <button (click)=\"modifyPlayer()\">Modify Player</button>\r\n        <button (click)=\"deletePlayer()\">Delete Player</button>\r\n        <a *ngFor=\"let match of filteredMatches\" [routerLink]=\"['/matchcreate', match.matchId]\">\r\n                <li>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>\r\n        </a>\r\n</div>"
 
 /***/ }),
 
@@ -614,6 +614,7 @@ var PlayerDetailComponent = (function () {
                 .then(function () {
                 var test = _this.matchTypeControl.valueChanges;
                 test.subscribe(function (value) {
+                    _this.filteredMatches = _this.playedMatches.filter(function (x) { return x.matchTypeId === value; });
                     switch (_this.graphTitle) {
                         case 'Games Won':
                             _this.loadGamesWon();
@@ -1098,12 +1099,10 @@ var Player = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RivalService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1117,7 +1116,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var RivalService = (function () {
     function RivalService(http) {
         this.http = http;
@@ -1127,29 +1125,18 @@ var RivalService = (function () {
     }
     RivalService.prototype.getRivals = function (playerId) {
         var _this = this;
-        var cacheCheckTime = new Date();
-        cacheCheckTime.setMinutes(cacheCheckTime.getMinutes() - 15);
-        if (this.lastCacheDate < cacheCheckTime) {
-            var MatchesParamAdded = this.rivalsUrl + '?playerId=' + playerId;
-            return this.http.get(MatchesParamAdded)
-                .toPromise()
-                .then(function (response) {
-                _this.allPlayers = response.json();
-                _this.lastCacheDate = new Date();
-                return response.json();
-            })
-                .catch(function (error) {
-                console.error('An error occured', error);
-                return Promise.reject(error.message || error);
-            });
-        }
-        else {
-            return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].of(this.allPlayers)
-                .toPromise()
-                .then(function (things) {
-                return _this.allPlayers;
-            });
-        }
+        var MatchesParamAdded = this.rivalsUrl + '?playerId=' + playerId;
+        return this.http.get(MatchesParamAdded)
+            .toPromise()
+            .then(function (response) {
+            _this.allPlayers = response.json();
+            _this.lastCacheDate = new Date();
+            return response.json();
+        })
+            .catch(function (error) {
+            console.error('An error occured', error);
+            return Promise.reject(error.message || error);
+        });
     };
     return RivalService;
 }());
