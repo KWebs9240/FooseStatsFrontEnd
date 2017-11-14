@@ -139,8 +139,8 @@ export class PlayerDetailComponent implements OnInit{
         this.rivalPlayers.map(player => {
             if(player.rivalGamesPlayed[this.selectedMatchTypeId] > 0) {
                 this.barChartData.push({name: player.firstName + ' ' + player.lastName, series: [ 
-                    {name: 'rival', value: player.rivalGamesPlayed[this.selectedMatchTypeId]},
-                    { name: 'player', value: player.playerGamesPlayed[this.selectedMatchTypeId] }
+                    {name: 'Rival', value: player.rivalGamesPlayed[this.selectedMatchTypeId]},
+                    { name: 'Player', value: player.playerGamesPlayed[this.selectedMatchTypeId] }
                 ]});
             }
         });
@@ -166,8 +166,8 @@ export class PlayerDetailComponent implements OnInit{
         this.rivalPlayers.map(player => {
             if(player.rivalGamesPlayed[this.selectedMatchTypeId] > 0) {
                 this.barChartData.push({name: player.firstName + ' ' + player.lastName, series: [
-                    { name: 'rival', value: player.rivalGamesWon[this.selectedMatchTypeId] },
-                    { name: 'player', value: player.playerGamesWon[this.selectedMatchTypeId] }
+                    { name: 'Rival', value: player.rivalGamesWon[this.selectedMatchTypeId] },
+                    { name: 'Player', value: player.playerGamesWon[this.selectedMatchTypeId] }
                 ]});
             }
         });
@@ -192,8 +192,8 @@ export class PlayerDetailComponent implements OnInit{
         this.rivalPlayers.map(player => {
             if(player.rivalGamesPlayed[this.selectedMatchTypeId] > 0) {
                 this.barChartData.push({name: player.firstName + ' ' + player.lastName, series: [
-                    { name: 'rival', value: player.rivalGamesWonPct[this.selectedMatchTypeId] },
-                    { name: 'player', value: player.playerGamesWonPct[this.selectedMatchTypeId] }
+                    { name: 'Rival', value: player.rivalGamesWonPct[this.selectedMatchTypeId] },
+                    { name: 'Player', value: player.playerGamesWonPct[this.selectedMatchTypeId] }
                 ]});
             }
         });
@@ -218,8 +218,8 @@ export class PlayerDetailComponent implements OnInit{
         this.rivalPlayers.map(player => {
             if(player.rivalGamesPlayed[this.selectedMatchTypeId] > 0) {
                 this.barChartData.push({name: player.firstName + ' ' + player.lastName, series: [
-                    { name: 'rival', value: player.rivalPointsPerGame[this.selectedMatchTypeId] },
-                    { name: 'player', value: player.playerPointsPerGame[this.selectedMatchTypeId] }
+                    { name: 'Rival', value: player.rivalPointsPerGame[this.selectedMatchTypeId] },
+                    { name: 'Player', value: player.playerPointsPerGame[this.selectedMatchTypeId] }
                 ]});
             }
         });

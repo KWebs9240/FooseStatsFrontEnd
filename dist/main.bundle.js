@@ -673,8 +673,8 @@ var PlayerDetailComponent = (function () {
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
-                        { name: 'rival', value: player.rivalGamesPlayed[_this.selectedMatchTypeId] },
-                        { name: 'player', value: player.playerGamesPlayed[_this.selectedMatchTypeId] }
+                        { name: 'Rival', value: player.rivalGamesPlayed[_this.selectedMatchTypeId] },
+                        { name: 'Player', value: player.playerGamesPlayed[_this.selectedMatchTypeId] }
                     ] });
             }
         });
@@ -704,8 +704,8 @@ var PlayerDetailComponent = (function () {
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
-                        { name: 'rival', value: player.rivalGamesWon[_this.selectedMatchTypeId] },
-                        { name: 'player', value: player.playerGamesWon[_this.selectedMatchTypeId] }
+                        { name: 'Rival', value: player.rivalGamesWon[_this.selectedMatchTypeId] },
+                        { name: 'Player', value: player.playerGamesWon[_this.selectedMatchTypeId] }
                     ] });
             }
         });
@@ -734,8 +734,8 @@ var PlayerDetailComponent = (function () {
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
-                        { name: 'rival', value: player.rivalGamesWonPct[_this.selectedMatchTypeId] },
-                        { name: 'player', value: player.playerGamesWonPct[_this.selectedMatchTypeId] }
+                        { name: 'Rival', value: player.rivalGamesWonPct[_this.selectedMatchTypeId] },
+                        { name: 'Player', value: player.playerGamesWonPct[_this.selectedMatchTypeId] }
                     ] });
             }
         });
@@ -764,8 +764,8 @@ var PlayerDetailComponent = (function () {
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
-                        { name: 'rival', value: player.rivalPointsPerGame[_this.selectedMatchTypeId] },
-                        { name: 'player', value: player.playerPointsPerGame[_this.selectedMatchTypeId] }
+                        { name: 'Rival', value: player.rivalPointsPerGame[_this.selectedMatchTypeId] },
+                        { name: 'Player', value: player.playerPointsPerGame[_this.selectedMatchTypeId] }
                     ] });
             }
         });
