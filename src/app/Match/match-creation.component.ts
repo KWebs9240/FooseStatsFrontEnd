@@ -36,8 +36,13 @@ export class MatchCreationComponent implements OnInit{
     ngOnInit(): void {
         this.playerService.getPlayers()
         .then (result => {
-            this.allPlayers = result
+            this.allPlayers = result.sort((x, y) => {
+                if((x.firstName + x.lastName) < (y.firstName + y.lastName)) {return -1}
+                else if ((x.firstName + x.lastName) > (y.firstName + y.lastName)) {return 1}
+                else {return 0;}
+            });
         });
+
         this.matchTypeService.getMatchTypes()
         .then (result => {
             this.allMatchTypes = result

@@ -69,7 +69,17 @@ var MatchCreationComponent = (function () {
         var _this = this;
         this.playerService.getPlayers()
             .then(function (result) {
-            _this.allPlayers = result;
+            _this.allPlayers = result.sort(function (x, y) {
+                if ((x.firstName + x.lastName) < (y.firstName + y.lastName)) {
+                    return -1;
+                }
+                else if ((x.firstName + x.lastName) > (y.firstName + y.lastName)) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            });
         });
         this.matchTypeService.getMatchTypes()
             .then(function (result) {
@@ -600,8 +610,8 @@ var PlayerDetailComponent = (function () {
         }).subscribe(function (foundPlayer) {
             _this.player = foundPlayer;
             _this.matchService.getPlayerMatches(foundPlayer.playerId)
-                .then(function (resultMatches) { return _this.playedMatches = resultMatches; });
-            _this.rivalService.getRivals(foundPlayer.playerId)
+                .then(function (resultMatches) { return _this.playedMatches = resultMatches; })
+                .then(function () { return _this.rivalService.getRivals(foundPlayer.playerId); })
                 .then(function (resultRivals) { return _this.rivalPlayers = resultRivals; })
                 .then(function () { return _this.matchTypeService.getMatchTypes(); })
                 .then(function (matchTypes) {
@@ -668,13 +678,13 @@ var PlayerDetailComponent = (function () {
         });
         this.barChartData = [];
         this.colorScheme.domain = [];
-        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
         this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
-                        { name: 'Rival', value: player.rivalGamesPlayed[_this.selectedMatchTypeId] },
-                        { name: 'Player', value: player.playerGamesPlayed[_this.selectedMatchTypeId] }
+                        { name: 'Player', value: player.playerGamesPlayed[_this.selectedMatchTypeId] },
+                        { name: 'Rival', value: player.rivalGamesPlayed[_this.selectedMatchTypeId] }
                     ] });
             }
         });
@@ -699,13 +709,13 @@ var PlayerDetailComponent = (function () {
         });
         this.barChartData = [];
         this.colorScheme.domain = [];
-        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
         this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
-                        { name: 'Rival', value: player.rivalGamesWon[_this.selectedMatchTypeId] },
-                        { name: 'Player', value: player.playerGamesWon[_this.selectedMatchTypeId] }
+                        { name: 'Player', value: player.playerGamesWon[_this.selectedMatchTypeId] },
+                        { name: 'Rival', value: player.rivalGamesWon[_this.selectedMatchTypeId] }
                     ] });
             }
         });
@@ -729,13 +739,13 @@ var PlayerDetailComponent = (function () {
         });
         this.barChartData = [];
         this.colorScheme.domain = [];
-        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
         this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
-                        { name: 'Rival', value: player.rivalGamesWonPct[_this.selectedMatchTypeId] },
-                        { name: 'Player', value: player.playerGamesWonPct[_this.selectedMatchTypeId] }
+                        { name: 'Player', value: player.playerGamesWonPct[_this.selectedMatchTypeId] },
+                        { name: 'Rival', value: player.rivalGamesWonPct[_this.selectedMatchTypeId] }
                     ] });
             }
         });
@@ -759,13 +769,13 @@ var PlayerDetailComponent = (function () {
         });
         this.barChartData = [];
         this.colorScheme.domain = [];
-        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
         this.colorScheme.domain.push(this.player.hexColor || '#1f53d9');
+        this.colorScheme.domain.push(this.rivalPlayers[0].hexColor || '#1f53d9');
         this.rivalPlayers.map(function (player) {
             if (player.rivalGamesPlayed[_this.selectedMatchTypeId] > 0) {
                 _this.barChartData.push({ name: player.firstName + ' ' + player.lastName, series: [
-                        { name: 'Rival', value: player.rivalPointsPerGame[_this.selectedMatchTypeId] },
-                        { name: 'Player', value: player.playerPointsPerGame[_this.selectedMatchTypeId] }
+                        { name: 'Player', value: player.playerPointsPerGame[_this.selectedMatchTypeId] },
+                        { name: 'Rival', value: player.rivalPointsPerGame[_this.selectedMatchTypeId] }
                     ] });
             }
         });
