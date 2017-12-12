@@ -5,6 +5,8 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/toPromise';
 
+import { GlobalConstants } from '../global-constants';
+
 import { Player } from './player';
 
 @Injectable()

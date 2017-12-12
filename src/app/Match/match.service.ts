@@ -5,13 +5,15 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/toPromise';
 
+import { GlobalConstants } from '../global-constants';
+
 import { Match } from './match';
 import { Player } from '../Player/player';
 import { PlayerService } from '../Player/player.service';
 
 @Injectable()
 export class MatchService {
-    private matchUrl = 'http://localhost:64358/api/Match';
+    private matchUrl = GlobalConstants.API_ENDPOINT + 'api/Match';
     private headers = new Headers({'Content-Type': 'application/json'});
     
     private lastCacheDate: Date = new Date(2000, 1, 0, 0, 0, 0, 0);

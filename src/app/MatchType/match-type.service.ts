@@ -5,11 +5,13 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/toPromise';
 
+import { GlobalConstants } from '../global-constants';
+
 import { MatchType } from './match-type';
 
 @Injectable()
 export class MatchTypeService {
-    private matchTypeUrl = 'http://localhost:64358/api/MatchType';
+    private matchTypeUrl = GlobalConstants.API_ENDPOINT + 'api/MatchType';
     private headers = new Headers({'Content-Type': 'application/json'});
     
     private lastCacheDate: Date = new Date(2000, 1, 0, 0, 0, 0, 0);

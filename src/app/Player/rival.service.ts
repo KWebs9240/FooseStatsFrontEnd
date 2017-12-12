@@ -5,11 +5,13 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/toPromise';
 
+import { GlobalConstants } from '../global-constants';
+
 import { Rival } from './rival';
 
 @Injectable()
 export class RivalService{
-    private rivalsUrl = 'http://localhost:64358/api/Rivals';
+    private rivalsUrl = GlobalConstants.API_ENDPOINT + 'api/Rivals';
     private headers = new Headers({'Content-Type': 'application/json'});
 
     private lastCacheDate: Date = new Date(2000, 1, 0, 0, 0, 0, 0);
