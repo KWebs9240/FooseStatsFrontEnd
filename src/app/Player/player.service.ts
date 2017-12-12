@@ -11,7 +11,7 @@ import { Player } from './player';
 
 @Injectable()
 export class PlayerService{
-    private playerUrl = 'http://localhost:64358/api/Player';
+    private playerUrl = GlobalConstants.API_ENDPOINT + 'api/Player';
     private headers = new Headers({'Content-Type': 'application/json'});
 
     private lastCacheDate: Date = new Date(2000, 1, 0, 0, 0, 0, 0);
