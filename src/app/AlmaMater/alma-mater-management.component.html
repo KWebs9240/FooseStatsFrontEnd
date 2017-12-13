@@ -1,0 +1,8 @@
+<h3>Alma Maters</h3>
+<div *ngFor="let almaMater of allAlmaMaters">
+    <input [(ngModel)]="almaMater.almaMaterCode">
+    <input [(ngModel)]="almaMater.almaMaterDescription">
+    <button (click)="removeAlmaMater(almaMater.almaMaterId)">x</button>
+</div>
+<button (click)="addBlankAlmaMater()">Add Alma Mater</button>
+<button (click)="saveAllAlmaMaters()">Save Alma Maters</button>

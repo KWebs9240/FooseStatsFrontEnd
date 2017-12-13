@@ -1,0 +1,8 @@
+<h3>Locations</h3>
+<div *ngFor="let location of allLocations">
+    <input [(ngModel)]="location.locationCode">
+    <input [(ngModel)]="location.locationDescription">
+    <button (click)="removeMatch(location.locationId)">x</button>
+</div>
+<button (click)="addBlankLocation()">Add Location</button>
+<button (click)="saveAllLocations()">Save Locations</button>

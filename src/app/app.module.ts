@@ -23,6 +23,10 @@ import { PlayerCreationComponent } from './Player/player-creation.component';
 import { MatchCreationComponent } from './Match/match-creation.component';
 import { MatchTypeManagementComponent } from './MatchType/match-type-management.component';
 import { MatchTypeService } from './MatchType/match-type.service';
+import { LocationManagementComponent } from './Location/location-management.component';
+import { LocationService } from './Location/location.service';
+import { AlmaMaterManagementComponent } from './AlmaMater/alma-mater-management.component';
+import { AlmaMaterService } from './AlmaMater/alma-mater.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -33,6 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PlayerService,
     RivalService,
     MatchTypeService,
+    LocationService,
+    AlmaMaterService,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PlayerCreationComponent,
     MatchCreationComponent,
     MatchTypeManagementComponent,
+    LocationManagementComponent,
+    AlmaMaterManagementComponent,
   ],
   bootstrap:    [ AppComponent ]
 })

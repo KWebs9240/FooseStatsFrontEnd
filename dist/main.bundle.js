@@ -17,6 +17,362 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 
 /***/ }),
 
+/***/ "../../../../../src/app/AlmaMater/alma-mater-management.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Alma Maters</h3>\r\n<div *ngFor=\"let almaMater of allAlmaMaters\">\r\n    <input [(ngModel)]=\"almaMater.almaMaterCode\">\r\n    <input [(ngModel)]=\"almaMater.almaMaterDescription\">\r\n    <button (click)=\"removeAlmaMater(almaMater.almaMaterId)\">x</button>\r\n</div>\r\n<button (click)=\"addBlankAlmaMater()\">Add Alma Mater</button>\r\n<button (click)=\"saveAllAlmaMaters()\">Save Alma Maters</button>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/AlmaMater/alma-mater-management.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlmaMaterManagementComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alma_mater__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__alma_mater_service__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AlmaMaterManagementComponent = (function () {
+    function AlmaMaterManagementComponent(almaMaterService) {
+        this.almaMaterService = almaMaterService;
+        this.allAlmaMaters = [];
+    }
+    AlmaMaterManagementComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.almaMaterService.getAlmaMaters()
+            .then(function (result) {
+            _this.allAlmaMaters = result;
+        });
+    };
+    AlmaMaterManagementComponent.prototype.addBlankAlmaMater = function () {
+        this.allAlmaMaters.push(new __WEBPACK_IMPORTED_MODULE_1__alma_mater__["a" /* AlmaMater */]());
+    };
+    AlmaMaterManagementComponent.prototype.saveAllAlmaMaters = function () {
+        var _this = this;
+        this.allAlmaMaters.forEach(function (almaMater) {
+            _this.almaMaterService.saveAlmaMater(almaMater);
+        });
+    };
+    AlmaMaterManagementComponent.prototype.removeAlmaMater = function (delAlmaMaterId) {
+        var delAlmaMater = this.allAlmaMaters.find(function (x) { return x.almaMaterId === delAlmaMaterId; });
+        var delIndex = this.allAlmaMaters.indexOf(delAlmaMater);
+        this.allAlmaMaters.splice(delIndex, 1);
+        this.almaMaterService.deleteAlmaMater(delAlmaMater);
+    };
+    return AlmaMaterManagementComponent;
+}());
+AlmaMaterManagementComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'alma-mater-management',
+        template: __webpack_require__("../../../../../src/app/AlmaMater/alma-mater-management.component.html")
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__alma_mater_service__["a" /* AlmaMaterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__alma_mater_service__["a" /* AlmaMaterService */]) === "function" && _a || Object])
+], AlmaMaterManagementComponent);
+
+var _a;
+//# sourceMappingURL=alma-mater-management.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/AlmaMater/alma-mater.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlmaMaterService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__global_constants__ = __webpack_require__("../../../../../src/app/global-constants.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var AlmaMaterService = (function () {
+    function AlmaMaterService(http) {
+        this.http = http;
+        this.almaMaterUrl = __WEBPACK_IMPORTED_MODULE_5__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + 'api/AlmaMater';
+        this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
+        this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+    }
+    AlmaMaterService.prototype.getAlmaMaters = function () {
+        var _this = this;
+        var cacheCheckTime = new Date();
+        cacheCheckTime.setMinutes(cacheCheckTime.getMinutes() - 15);
+        if (this.lastCacheDate < cacheCheckTime) {
+            return this.http.get(this.almaMaterUrl)
+                .toPromise()
+                .then(function (response) {
+                _this.allAlmaMaters = response.json();
+                _this.lastCacheDate = new Date();
+                return _this.allAlmaMaters;
+            })
+                .catch(function (error) {
+                console.error('An error occured', error);
+                return Promise.reject(error.message || error);
+            });
+        }
+        else {
+            return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].of(this.allAlmaMaters)
+                .toPromise()
+                .then(function (things) {
+                return _this.allAlmaMaters;
+            });
+        }
+    };
+    AlmaMaterService.prototype.saveAlmaMater = function (almaMaterForSaving) {
+        var _this = this;
+        return this.http
+            .put(this.almaMaterUrl, JSON.stringify(almaMaterForSaving), { headers: this.headers })
+            .toPromise()
+            .then(function (result) {
+            //Resetting the last cache date so the list of players is refreshed
+            _this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+            return result.json();
+        });
+    };
+    AlmaMaterService.prototype.deleteAlmaMater = function (almMaterIdToDelete) {
+        var _this = this;
+        return this.http
+            .post(this.almaMaterUrl + '/Delete', JSON.stringify(almMaterIdToDelete), { headers: this.headers })
+            .toPromise()
+            .then(function (result) {
+            _this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+            return result.json();
+        });
+    };
+    return AlmaMaterService;
+}());
+AlmaMaterService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], AlmaMaterService);
+
+var _a;
+//# sourceMappingURL=alma-mater.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/AlmaMater/alma-mater.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlmaMater; });
+var AlmaMater = (function () {
+    function AlmaMater() {
+    }
+    return AlmaMater;
+}());
+
+//# sourceMappingURL=alma-mater.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/Location/location-management.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Locations</h3>\r\n<div *ngFor=\"let location of allLocations\">\r\n    <input [(ngModel)]=\"location.locationCode\">\r\n    <input [(ngModel)]=\"location.locationDescription\">\r\n    <button (click)=\"removeMatch(location.locationId)\">x</button>\r\n</div>\r\n<button (click)=\"addBlankLocation()\">Add Location</button>\r\n<button (click)=\"saveAllLocations()\">Save Locations</button>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/Location/location-management.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocationManagementComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__location__ = __webpack_require__("../../../../../src/app/Location/location.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__location_service__ = __webpack_require__("../../../../../src/app/Location/location.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LocationManagementComponent = (function () {
+    function LocationManagementComponent(locationService) {
+        this.locationService = locationService;
+        this.allLocations = [];
+    }
+    LocationManagementComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.locationService.getLocations()
+            .then(function (result) {
+            _this.allLocations = result;
+        });
+    };
+    LocationManagementComponent.prototype.addBlankLocation = function () {
+        this.allLocations.push(new __WEBPACK_IMPORTED_MODULE_1__location__["a" /* Location */]());
+    };
+    LocationManagementComponent.prototype.saveAllLocations = function () {
+        var _this = this;
+        this.allLocations.forEach(function (location) {
+            _this.locationService.saveLocation(location);
+        });
+    };
+    LocationManagementComponent.prototype.removeLocation = function (delLocationId) {
+        var delLocation = this.allLocations.find(function (x) { return x.locationId === delLocationId; });
+        var delIndex = this.allLocations.indexOf(delLocation);
+        this.allLocations.splice(delIndex, 1);
+        this.locationService.deleteLocation(delLocation);
+    };
+    return LocationManagementComponent;
+}());
+LocationManagementComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'location-management',
+        template: __webpack_require__("../../../../../src/app/Location/location-management.component.html")
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */]) === "function" && _a || Object])
+], LocationManagementComponent);
+
+var _a;
+//# sourceMappingURL=location-management.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/Location/location.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocationService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__global_constants__ = __webpack_require__("../../../../../src/app/global-constants.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var LocationService = (function () {
+    function LocationService(http) {
+        this.http = http;
+        this.locationUrl = __WEBPACK_IMPORTED_MODULE_5__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + 'api/Location';
+        this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
+        this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+    }
+    LocationService.prototype.getLocations = function () {
+        var _this = this;
+        var cacheCheckTime = new Date();
+        cacheCheckTime.setMinutes(cacheCheckTime.getMinutes() - 15);
+        if (this.lastCacheDate < cacheCheckTime) {
+            return this.http.get(this.locationUrl)
+                .toPromise()
+                .then(function (response) {
+                _this.allLocations = response.json();
+                _this.lastCacheDate = new Date();
+                return _this.allLocations;
+            })
+                .catch(function (error) {
+                console.error('An error occured', error);
+                return Promise.reject(error.message || error);
+            });
+        }
+        else {
+            return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].of(this.allLocations)
+                .toPromise()
+                .then(function (things) {
+                return _this.allLocations;
+            });
+        }
+    };
+    LocationService.prototype.saveLocation = function (locationForSaving) {
+        var _this = this;
+        return this.http
+            .put(this.locationUrl, JSON.stringify(locationForSaving), { headers: this.headers })
+            .toPromise()
+            .then(function (result) {
+            //Resetting the last cache date so the list of players is refreshed
+            _this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+            return result.json();
+        });
+    };
+    LocationService.prototype.deleteLocation = function (locationIdToDelete) {
+        var _this = this;
+        return this.http
+            .post(this.locationUrl + '/Delete', JSON.stringify(locationIdToDelete), { headers: this.headers })
+            .toPromise()
+            .then(function (result) {
+            _this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
+            return result.json();
+        });
+    };
+    return LocationService;
+}());
+LocationService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], LocationService);
+
+var _a;
+//# sourceMappingURL=location.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/Location/location.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Location; });
+var Location = (function () {
+    function Location() {
+    }
+    return Location;
+}());
+
+//# sourceMappingURL=location.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/Match/match-creation.component.html":
 /***/ (function(module, exports) {
 
@@ -212,7 +568,8 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__global_constants__ = __webpack_require__("../../../../../src/app/global-constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -228,11 +585,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MatchService = (function () {
     function MatchService(http, playerService) {
         this.http = http;
         this.playerService = playerService;
-        this.matchUrl = 'http://localhost:64358/api/Match';
+        this.matchUrl = __WEBPACK_IMPORTED_MODULE_5__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + 'api/Match';
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
     }
@@ -312,7 +670,7 @@ var MatchService = (function () {
 }());
 MatchService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__Player_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__Player_player_service__["a" /* PlayerService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__Player_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__Player_player_service__["a" /* PlayerService */]) === "function" && _b || Object])
 ], MatchService);
 
 var _a, _b;
@@ -417,6 +775,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__global_constants__ = __webpack_require__("../../../../../src/app/global-constants.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -431,10 +790,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MatchTypeService = (function () {
     function MatchTypeService(http) {
         this.http = http;
-        this.matchTypeUrl = 'http://localhost:64358/api/MatchType';
+        this.matchTypeUrl = __WEBPACK_IMPORTED_MODULE_5__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + 'api/MatchType';
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
     }
@@ -973,6 +1333,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__global_constants__ = __webpack_require__("../../../../../src/app/global-constants.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -987,10 +1348,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PlayerService = (function () {
     function PlayerService(http) {
         this.http = http;
-        this.playerUrl = 'http://localhost:64358/api/Player';
+        this.playerUrl = __WEBPACK_IMPORTED_MODULE_5__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + 'api/Player';
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
     }
@@ -1113,6 +1475,7 @@ var Player = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__global_constants__ = __webpack_require__("../../../../../src/app/global-constants.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1126,10 +1489,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RivalService = (function () {
     function RivalService(http) {
         this.http = http;
-        this.rivalsUrl = 'http://localhost:64358/api/Rivals';
+        this.rivalsUrl = __WEBPACK_IMPORTED_MODULE_4__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + 'api/Rivals';
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         this.lastCacheDate = new Date(2000, 1, 0, 0, 0, 0, 0);
     }
@@ -1174,12 +1538,16 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Player_player_creation_component__ = __webpack_require__("../../../../../src/app/Player/player-creation.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Match_match_creation_component__ = __webpack_require__("../../../../../src/app/Match/match-creation.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Location_location_management_component__ = __webpack_require__("../../../../../src/app/Location/location-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__AlmaMater_alma_mater_management_component__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater-management.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1200,6 +1568,8 @@ var routes = [
     { path: 'matchcreate', component: __WEBPACK_IMPORTED_MODULE_7__Match_match_creation_component__["a" /* MatchCreationComponent */] },
     { path: 'matchcreate/:id', component: __WEBPACK_IMPORTED_MODULE_7__Match_match_creation_component__["a" /* MatchCreationComponent */] },
     { path: 'matchTypeManagement', component: __WEBPACK_IMPORTED_MODULE_8__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */] },
+    { path: 'locationManagement', component: __WEBPACK_IMPORTED_MODULE_9__Location_location_management_component__["a" /* LocationManagementComponent */] },
+    { path: 'almaMaterManagement', component: __WEBPACK_IMPORTED_MODULE_10__AlmaMater_alma_mater_management_component__["a" /* AlmaMaterManagementComponent */] },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -1299,7 +1669,11 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Match_match_creation_component__ = __webpack_require__("../../../../../src/app/Match/match-creation.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__Location_location_management_component__ = __webpack_require__("../../../../../src/app/Location/location-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__Location_location_service__ = __webpack_require__("../../../../../src/app/Location/location.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__AlmaMater_alma_mater_management_component__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__AlmaMater_alma_mater_service__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1329,6 +1703,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -1341,11 +1719,13 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_11__Player_player_service__["a" /* PlayerService */],
             __WEBPACK_IMPORTED_MODULE_12__Player_rival_service__["a" /* RivalService */],
             __WEBPACK_IMPORTED_MODULE_18__MatchType_match_type_service__["a" /* MatchTypeService */],
+            __WEBPACK_IMPORTED_MODULE_20__Location_location_service__["a" /* LocationService */],
+            __WEBPACK_IMPORTED_MODULE_22__AlmaMater_alma_mater_service__["a" /* AlmaMaterService */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["BrowserModule"],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_19__app_routing_module__["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_23__app_routing_module__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_4__swimlane_ngx_charts__["NgxChartsModule"],
             __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
@@ -1361,6 +1741,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_15__Player_player_creation_component__["a" /* PlayerCreationComponent */],
             __WEBPACK_IMPORTED_MODULE_16__Match_match_creation_component__["a" /* MatchCreationComponent */],
             __WEBPACK_IMPORTED_MODULE_17__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__Location_location_management_component__["a" /* LocationManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__AlmaMater_alma_mater_management_component__["a" /* AlmaMaterManagementComponent */],
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })
@@ -1603,6 +1985,23 @@ DashboardComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=dashboard.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/global-constants.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalConstants; });
+var GlobalConstants = (function () {
+    function GlobalConstants() {
+    }
+    return GlobalConstants;
+}());
+
+//Local
+GlobalConstants.API_ENDPOINT = 'http://localhost:64358/';
+//# sourceMappingURL=global-constants.js.map
 
 /***/ }),
 

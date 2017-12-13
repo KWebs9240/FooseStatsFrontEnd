@@ -8,6 +8,8 @@ import { MatchSelectionComponent } from './Match/match-selection.component';
 import { PlayerCreationComponent } from './Player/player-creation.component';
 import { MatchCreationComponent } from './Match/match-creation.component';
 import { MatchTypeManagementComponent } from './MatchType/match-type-management.component';
+import { LocationManagementComponent } from './Location/location-management.component';
+import { AlmaMaterManagementComponent } from './AlmaMater/alma-mater-management.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -20,6 +22,8 @@ const routes: Routes = [
     { path: 'matchcreate', component: MatchCreationComponent },
     { path: 'matchcreate/:id', component: MatchCreationComponent },
     { path: 'matchTypeManagement', component: MatchTypeManagementComponent },
+    { path: 'locationManagement', component: LocationManagementComponent },
+    { path: 'almaMaterManagement', component: AlmaMaterManagementComponent },
 ];
 
 @NgModule({
