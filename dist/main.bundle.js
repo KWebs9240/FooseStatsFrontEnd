@@ -1162,7 +1162,7 @@ var _a, _b, _c, _d, _e, _f, _g;
 /***/ "../../../../../src/app/Player/player-creation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>New Player</h3>\r\n<div>\r\n    <div>\r\n        <label>First Name</label>\r\n        <input [(ngModel)]=\"firstName\">\r\n    </div>\r\n    <div>\r\n        <label>Last Name</label>\r\n        <input [(ngModel)]=\"lastName\">\r\n    </div>\r\n    <div>\r\n        <label>Nickname</label>\r\n        <input [(ngModel)]=\"nickName\">\r\n    </div>\r\n    <div>\r\n        <label>PlayerColor</label>\r\n        <input [(colorPicker)]=\"hexColor\" [style.background]=\"hexColor\" [value]=\"hexColor\"/>\r\n    </div>\r\n    <button (click)=\"saveThenView()\">Save</button>\r\n</div>"
+module.exports = "<h3>New Player</h3>\r\n<div>\r\n    <div>\r\n        <label>First Name</label>\r\n        <input [(ngModel)]=\"firstName\">\r\n    </div>\r\n    <div>\r\n        <label>Last Name</label>\r\n        <input [(ngModel)]=\"lastName\">\r\n    </div>\r\n    <div>\r\n        <label>Nickname</label>\r\n        <input [(ngModel)]=\"nickName\">\r\n    </div>\r\n    <div>\r\n        <label>PlayerColor</label>\r\n        <input [(colorPicker)]=\"hexColor\" [style.background]=\"hexColor\" [value]=\"hexColor\"/>\r\n    </div>\r\n    <div>\r\n        <label>Player Location</label>\r\n        <select [(ngModel)]=\"locationId\">\r\n            <option *ngFor=\"let location of allLocations\" [ngValue]=\"location.locationId\">{{location.locationDescription}} - {{location.locationCode}}</option>\r\n        </select>\r\n    </div>\r\n    <div>\r\n        <label>Player AlmaMater</label>\r\n        <select [(ngModel)]=\"almaMaterId\">\r\n            <option *ngFor=\"let almaMater of allAlmaMaters\" [ngValue]=\"almaMater.almaMaterId\">{{almaMater.almaMaterDescription}} - {{almaMater.almaMaterCode}}</option>\r\n        </select>\r\n    </div>\r\n    <button (click)=\"saveThenView()\">Save</button>\r\n</div>"
 
 /***/ }),
 
@@ -1175,6 +1175,8 @@ module.exports = "<h3>New Player</h3>\r\n<div>\r\n    <div>\r\n        <label>Fi
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__player__ = __webpack_require__("../../../../../src/app/Player/player.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AlmaMater_alma_mater_service__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Location_location_service__ = __webpack_require__("../../../../../src/app/Location/location.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1188,9 +1190,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var PlayerCreationComponent = (function () {
-    function PlayerCreationComponent(playerService, router, activatedRoute) {
+    function PlayerCreationComponent(playerService, almaMaterService, locationService, router, activatedRoute) {
         this.playerService = playerService;
+        this.almaMaterService = almaMaterService;
+        this.locationService = locationService;
         this.router = router;
         this.activatedRoute = activatedRoute;
     }
@@ -1210,7 +1216,13 @@ var PlayerCreationComponent = (function () {
             _this.lastName = foundPlayer.lastName;
             _this.nickName = foundPlayer.nickName;
             _this.hexColor = foundPlayer.hexColor;
+            _this.locationId = foundPlayer.locationId;
+            _this.almaMaterId = foundPlayer.almaMaterId;
         });
+        this.locationService.getLocations()
+            .then(function (result) { return _this.allLocations = result; });
+        this.almaMaterService.getAlmaMaters()
+            .then(function (result) { return _this.allAlmaMaters = result; });
     };
     PlayerCreationComponent.prototype.save = function () {
         var insertPlayer = new __WEBPACK_IMPORTED_MODULE_2__player__["a" /* Player */]();
@@ -1219,6 +1231,8 @@ var PlayerCreationComponent = (function () {
         insertPlayer.nickName = this.nickName;
         insertPlayer.playerId = this.playerId;
         insertPlayer.hexColor = this.hexColor;
+        insertPlayer.locationId = this.locationId;
+        insertPlayer.almaMaterId = this.almaMaterId;
         return this.playerService.savePlayer(insertPlayer);
     };
     PlayerCreationComponent.prototype.saveThenView = function () {
@@ -1241,10 +1255,10 @@ PlayerCreationComponent = __decorate([
         selector: 'player-creation',
         template: __webpack_require__("../../../../../src/app/Player/player-creation.component.html")
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__AlmaMater_alma_mater_service__["a" /* AlmaMaterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__AlmaMater_alma_mater_service__["a" /* AlmaMaterService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__Location_location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__Location_location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _e || Object])
 ], PlayerCreationComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=player-creation.component.js.map
 
 /***/ }),

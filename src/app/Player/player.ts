@@ -5,6 +5,8 @@ export class Player {
     nickName: string;
     updateDate: Date;
     hexColor: string;
+    locationId: string;
+    almaMaterId: string;
     gamesPlayed: Map<string, number>;
     gamesWon: Map<string, number>;
     gamesWonPct: Map<string, number>;

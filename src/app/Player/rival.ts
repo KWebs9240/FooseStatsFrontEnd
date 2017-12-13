@@ -5,6 +5,8 @@ export class Rival {
     nickName: string;
     updateDate: Date;
     hexColor: string;
+    locationId: string;
+    almaMaterId: string;
     rivalGamesPlayed: Map<string, number>;
     rivalGamesWon: Map<string, number>;
     rivalGamesWonPct: Map<string, number>;

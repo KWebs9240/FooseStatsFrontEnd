@@ -16,5 +16,17 @@
         <label>PlayerColor</label>
         <input [(colorPicker)]="hexColor" [style.background]="hexColor" [value]="hexColor"/>
     </div>
+    <div>
+        <label>Player Location</label>
+        <select [(ngModel)]="locationId">
+            <option *ngFor="let location of allLocations" [ngValue]="location.locationId">{{location.locationDescription}} - {{location.locationCode}}</option>
+        </select>
+    </div>
+    <div>
+        <label>Player AlmaMater</label>
+        <select [(ngModel)]="almaMaterId">
+            <option *ngFor="let almaMater of allAlmaMaters" [ngValue]="almaMater.almaMaterId">{{almaMater.almaMaterDescription}} - {{almaMater.almaMaterCode}}</option>
+        </select>
+    </div>
     <button (click)="saveThenView()">Save</button>
 </div>
