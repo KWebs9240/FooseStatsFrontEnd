@@ -1,6 +1,26 @@
-<select [(ngModel)]="selectedMatchTypeId" [formControl]="matchTypeControl">
-    <option *ngFor="let matchType of allMatchTypes" [ngValue]="matchType.matchTypeId">{{matchType.matchTypeDescription}}</option>
-</select>
+<div>
+    <label>Game Type</label>
+    <select [(ngModel)]="selectedMatchTypeId" [formControl]="matchTypeControl">
+        <option *ngFor="let matchType of allMatchTypes" [ngValue]="matchType.matchTypeId">{{matchType.matchTypeDescription}}</option>
+    </select>
+</div>
+<div>
+    <label>Office</label>
+    <select [(ngModel)]="selectedLocationId" [formControl]="locationControl">
+        <option *ngFor="let location of allLocations" [ngValue]="location.locationId">{{location.locationDescription}}</option>
+    </select>
+</div>
+<div>
+    <label>AlmaMater</label>
+    <select [(ngModel)]="selectedAlmaMaterId" [formControl]="almaMaterControl">
+        <option *ngFor="let almaMater of allAlmaMaters" [ngValue]="almaMater.almaMaterId">{{almaMater.almaMaterDescription}}</option>
+    </select>
+</div>
+<div>
+    <label>Minimum Matches Played</label>
+    <input type="number" [(ngModel)]="minimumMatches" [formControl]="minimumMatchesControl"/>
+</div>
+
 <h3>{{graphTitle}}</h3>
 <div class="sizedchart">
     <!-- [view]="view" -->

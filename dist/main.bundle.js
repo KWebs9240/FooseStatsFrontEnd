@@ -1787,7 +1787,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<select [(ngModel)]=\"selectedMatchTypeId\" [formControl]=\"matchTypeControl\">\r\n    <option *ngFor=\"let matchType of allMatchTypes\" [ngValue]=\"matchType.matchTypeId\">{{matchType.matchTypeDescription}}</option>\r\n</select>\r\n<h3>{{graphTitle}}</h3>\r\n<div class=\"sizedchart\">\r\n    <!-- [view]=\"view\" -->\r\n    <ngx-charts-bar-vertical\r\n    *ngIf=\"showChart\"\r\n    [scheme]=\"colorScheme\"\r\n    [results]=\"barChartData\"\r\n    [gradient]=\"gradient\"\r\n    [xAxis]=\"showXAxis\"\r\n    [yAxis]=\"showYAxis\"\r\n    [legend]=\"showLegend\"\r\n    [showXAxisLabel]=\"showXAxisLabel\"\r\n    [showYAxisLabel]=\"showYAxisLabel\"\r\n    [xAxisLabel]=\"xAxisLabel\"\r\n    [yAxisLabel]=\"yAxisLabel\"\r\n    [yScaleMax]=\"yScaleMax\">\r\n    </ngx-charts-bar-vertical>\r\n</div>\r\n<div class=\"grid grid-pad\">\r\n    <div class=\"col-1-4\" (click)=\"loadGamesWon()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Games Won</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadGamesPlayed()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Games Played</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadGamesWonPct()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Win %</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadPointsPerGame()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Most William</h4>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div>\r\n    <label>Game Type</label>\r\n    <select [(ngModel)]=\"selectedMatchTypeId\" [formControl]=\"matchTypeControl\">\r\n        <option *ngFor=\"let matchType of allMatchTypes\" [ngValue]=\"matchType.matchTypeId\">{{matchType.matchTypeDescription}}</option>\r\n    </select>\r\n</div>\r\n<div>\r\n    <label>Office</label>\r\n    <select [(ngModel)]=\"selectedLocationId\" [formControl]=\"locationControl\">\r\n        <option *ngFor=\"let location of allLocations\" [ngValue]=\"location.locationId\">{{location.locationDescription}}</option>\r\n    </select>\r\n</div>\r\n<div>\r\n    <label>AlmaMater</label>\r\n    <select [(ngModel)]=\"selectedAlmaMaterId\" [formControl]=\"almaMaterControl\">\r\n        <option *ngFor=\"let almaMater of allAlmaMaters\" [ngValue]=\"almaMater.almaMaterId\">{{almaMater.almaMaterDescription}}</option>\r\n    </select>\r\n</div>\r\n<div>\r\n    <label>Minimum Matches Played</label>\r\n    <input type=\"number\" [(ngModel)]=\"minimumMatches\" [formControl]=\"minimumMatchesControl\"/>\r\n</div>\r\n\r\n<h3>{{graphTitle}}</h3>\r\n<div class=\"sizedchart\">\r\n    <!-- [view]=\"view\" -->\r\n    <ngx-charts-bar-vertical\r\n    *ngIf=\"showChart\"\r\n    [scheme]=\"colorScheme\"\r\n    [results]=\"barChartData\"\r\n    [gradient]=\"gradient\"\r\n    [xAxis]=\"showXAxis\"\r\n    [yAxis]=\"showYAxis\"\r\n    [legend]=\"showLegend\"\r\n    [showXAxisLabel]=\"showXAxisLabel\"\r\n    [showYAxisLabel]=\"showYAxisLabel\"\r\n    [xAxisLabel]=\"xAxisLabel\"\r\n    [yAxisLabel]=\"yAxisLabel\"\r\n    [yScaleMax]=\"yScaleMax\">\r\n    </ngx-charts-bar-vertical>\r\n</div>\r\n<div class=\"grid grid-pad\">\r\n    <div class=\"col-1-4\" (click)=\"loadGamesWon()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Games Won</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadGamesPlayed()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Games Played</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadGamesWonPct()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Win %</h4>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-1-4\" (click)=\"loadPointsPerGame()\"> <!--[routerLink]=\"['/detail', hero.id]\"-->\r\n        <div class=\"module hero\">\r\n            <h4>Most William</h4>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -1799,7 +1799,9 @@ module.exports = "<select [(ngModel)]=\"selectedMatchTypeId\" [formControl]=\"ma
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Location_location_service__ = __webpack_require__("../../../../../src/app/Location/location.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AlmaMater_alma_mater_service__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1813,15 +1815,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var DashboardComponent = (function () {
-    function DashboardComponent(playerService, matchTypeService) {
+    function DashboardComponent(playerService, matchTypeService, locationService, almaMaterService) {
         this.playerService = playerService;
         this.matchTypeService = matchTypeService;
-        this.matchTypeControl = new __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormControl */]();
+        this.locationService = locationService;
+        this.almaMaterService = almaMaterService;
+        this.matchTypeControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormControl */]();
+        this.locationControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormControl */]();
+        this.almaMaterControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormControl */]();
+        this.minimumMatchesControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormControl */]();
         this.players = [];
         this.graphTitle = '';
         this.allMatchTypes = [];
+        this.allLocations = [];
+        this.allAlmaMaters = [];
         this.selectedMatchTypeId = '';
+        this.selectedLocationId = '';
+        this.selectedAlmaMaterId = '';
+        this.minimumMatches = 5;
+        this.locationIdAll = '';
+        this.almaMaterIdAll = '';
         // view: any[] = [700, 400];
         // options
         this.showXAxis = false;
@@ -1841,25 +1857,12 @@ var DashboardComponent = (function () {
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.matchTypeControl = new __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormControl */]();
-        var test = this.matchTypeControl.valueChanges;
-        test.subscribe(function (value) {
-            switch (_this.graphTitle) {
-                case 'Games Won':
-                    _this.loadGamesWon();
-                    break;
-                case 'Games Played':
-                    _this.loadGamesPlayed();
-                    break;
-                case 'Win %':
-                    _this.loadGamesWonPct();
-                    break;
-                case 'Points Per Game':
-                    _this.loadPointsPerGame();
-                    break;
-                default:
-                    _this.loadGamesWon();
-            }
+        this.matchTypeControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormControl */]();
+        this.locationControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormControl */]();
+        this.almaMaterControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormControl */]();
+        this.matchTypeControl.valueChanges
+            .subscribe(function (value) {
+            _this.reloadMainGraph();
         });
         this.matchTypeService.getMatchTypes()
             .then(function (result) {
@@ -1869,11 +1872,68 @@ var DashboardComponent = (function () {
             .then(function () {
             _this.loadGamesWon();
         });
+        this.locationService.getLocations()
+            .then(function (result) {
+            _this.allLocations = result;
+            _this.locationIdAll = _this.allLocations.find(function (loc) { return loc.locationCode === 'ALL'; }).locationId;
+            _this.selectedLocationId = _this.locationIdAll;
+        })
+            .then(function () {
+            _this.locationControl.valueChanges
+                .subscribe(function (value) {
+                _this.reloadMainGraph();
+            });
+        });
+        this.almaMaterService.getAlmaMaters()
+            .then(function (result) {
+            _this.allAlmaMaters = result;
+            _this.almaMaterIdAll = _this.allAlmaMaters.find(function (alm) { return alm.almaMaterCode === 'ALL'; }).almaMaterId;
+            _this.selectedAlmaMaterId = _this.almaMaterIdAll;
+        })
+            .then(function () {
+            _this.almaMaterControl.valueChanges
+                .subscribe(function (value) {
+                _this.reloadMainGraph();
+            });
+        });
+        this.minimumMatchesControl.valueChanges
+            .subscribe(function (value) {
+            _this.minimumMatches = value;
+            _this.reloadMainGraph();
+        });
+    };
+    DashboardComponent.prototype.reloadMainGraph = function () {
+        switch (this.graphTitle) {
+            case 'Games Won':
+                this.loadGamesWon();
+                break;
+            case 'Games Played':
+                this.loadGamesPlayed();
+                break;
+            case 'Win %':
+                this.loadGamesWonPct();
+                break;
+            case 'Points Per Game':
+                this.loadPointsPerGame();
+                break;
+            default:
+                this.loadGamesWon();
+        }
+    };
+    DashboardComponent.prototype.getAndFilterPlayers = function () {
+        var _this = this;
+        return this.playerService.getPlayers()
+            .then(function (result) {
+            return result
+                .filter(function (play) { return ((play.locationId === _this.selectedLocationId) || (_this.selectedLocationId === _this.locationIdAll)); })
+                .filter(function (play) { return ((play.almaMaterId === _this.selectedAlmaMaterId) || (_this.selectedAlmaMaterId === _this.almaMaterIdAll)); })
+                .filter(function (play) { return (play.gamesPlayed[_this.selectedMatchTypeId] >= _this.minimumMatches); });
+        });
     };
     DashboardComponent.prototype.loadGamesPlayed = function () {
         var _this = this;
         this.showChart = false;
-        this.playerService.getPlayers()
+        this.getAndFilterPlayers()
             .then(function (result) {
             result = result.sort(function (x, y) {
                 if (x.gamesPlayed[_this.selectedMatchTypeId] > y.gamesPlayed[_this.selectedMatchTypeId]) {
@@ -1902,7 +1962,7 @@ var DashboardComponent = (function () {
     DashboardComponent.prototype.loadGamesWon = function () {
         var _this = this;
         this.showChart = false;
-        this.playerService.getPlayers()
+        this.getAndFilterPlayers()
             .then(function (result) {
             result = result.sort(function (x, y) {
                 if (x.gamesWon[_this.selectedMatchTypeId] > y.gamesWon[_this.selectedMatchTypeId]) {
@@ -1931,7 +1991,7 @@ var DashboardComponent = (function () {
     DashboardComponent.prototype.loadGamesWonPct = function () {
         var _this = this;
         this.showChart = false;
-        this.playerService.getPlayers()
+        this.getAndFilterPlayers()
             .then(function (result) {
             result = result.sort(function (x, y) {
                 if (x.gamesWonPct[_this.selectedMatchTypeId] > y.gamesWonPct[_this.selectedMatchTypeId]) {
@@ -1960,7 +2020,7 @@ var DashboardComponent = (function () {
     DashboardComponent.prototype.loadPointsPerGame = function () {
         var _this = this;
         this.showChart = false;
-        this.playerService.getPlayers()
+        this.getAndFilterPlayers()
             .then(function (result) {
             result = result.sort(function (x, y) {
                 if (x.pointsPerGame[_this.selectedMatchTypeId] > y.pointsPerGame[_this.selectedMatchTypeId]) {
@@ -1994,10 +2054,10 @@ DashboardComponent = __decorate([
         selector: 'my-dashboard',
         template: __webpack_require__("../../../../../src/app/dashboard.component.html")
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Player_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Player_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__MatchType_match_type_service__["a" /* MatchTypeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__MatchType_match_type_service__["a" /* MatchTypeService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Player_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Player_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__MatchType_match_type_service__["a" /* MatchTypeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__MatchType_match_type_service__["a" /* MatchTypeService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__Location_location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__Location_location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__AlmaMater_alma_mater_service__["a" /* AlmaMaterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__AlmaMater_alma_mater_service__["a" /* AlmaMaterService */]) === "function" && _d || Object])
 ], DashboardComponent);
 
-var _a, _b;
+var _a, _b, _c, _d;
 //# sourceMappingURL=dashboard.component.js.map
 
 /***/ }),

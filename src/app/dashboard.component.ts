@@ -6,6 +6,12 @@ import { PlayerService } from './Player/player.service';
 import { MatchType } from './MatchType/match-type';
 import { MatchTypeService } from './MatchType/match-type.service';
 
+import { Location } from './Location/location';
+import { LocationService } from './Location/location.service';
+
+import { AlmaMater } from './AlmaMater/alma-mater';
+import { AlmaMaterService } from './AlmaMater/alma-mater.service';
+
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -16,11 +22,23 @@ import { FormControl } from '@angular/forms';
 export class DashboardComponent implements OnInit {
 
     matchTypeControl = new FormControl();
+    locationControl = new FormControl();
+    almaMaterControl = new FormControl();
+    minimumMatchesControl = new FormControl();
+
 
     players: Player[] = [];
     graphTitle: string = '';
     allMatchTypes: MatchType[] = []
+    allLocations: Location[] = []
+    allAlmaMaters: AlmaMater[] = []
     selectedMatchTypeId: string = '';
+    selectedLocationId: string = '';
+    selectedAlmaMaterId: string = '';
+    minimumMatches: number = 5;
+
+    locationIdAll: string = '';
+    almaMaterIdAll: string = '';
   
     // view: any[] = [700, 400];
   
@@ -44,31 +62,19 @@ export class DashboardComponent implements OnInit {
     showChart: boolean = false;
 
     constructor(private playerService: PlayerService,
-                private matchTypeService: MatchTypeService) { }
+                private matchTypeService: MatchTypeService,
+                private locationService: LocationService,
+                private almaMaterService: AlmaMaterService) { }
 
     ngOnInit(): void {
         this.matchTypeControl = new FormControl();
+        this.locationControl = new FormControl();
+        this.almaMaterControl = new FormControl();
 
-        let test = this.matchTypeControl.valueChanges
-
-        test.subscribe(value => {
-            switch(this.graphTitle) {
-                case 'Games Won':
-                    this.loadGamesWon();
-                    break;
-                case 'Games Played':
-                    this.loadGamesPlayed();
-                    break;
-                case 'Win %':
-                    this.loadGamesWonPct();
-                    break;
-                case 'Points Per Game':
-                    this.loadPointsPerGame();
-                    break;
-                default:
-                    this.loadGamesWon();
-            }
-        });
+        this.matchTypeControl.valueChanges
+            .subscribe(value => {
+                this.reloadMainGraph();
+            });
 
         this.matchTypeService.getMatchTypes()
             .then(result => {
@@ -77,12 +83,73 @@ export class DashboardComponent implements OnInit {
             })
             .then(() => {
                 this.loadGamesWon();
+            });
+
+        this.locationService.getLocations()
+            .then(result => {
+                this.allLocations = result;
+                this.locationIdAll = this.allLocations.find(loc => loc.locationCode === 'ALL').locationId;
+                this.selectedLocationId = this.locationIdAll;
+            })
+            .then(() => {
+                this.locationControl.valueChanges
+                    .subscribe(value => {
+                        this.reloadMainGraph();
+                    })
+            });
+
+        this.almaMaterService.getAlmaMaters()
+            .then(result => {
+                this.allAlmaMaters = result;
+                this.almaMaterIdAll = this.allAlmaMaters.find(alm => alm.almaMaterCode === 'ALL').almaMaterId;
+                this.selectedAlmaMaterId = this.almaMaterIdAll;
+            })
+            .then(() => {
+                this.almaMaterControl.valueChanges
+                    .subscribe(value => {
+                        this.reloadMainGraph();
+                    })
+            })
+
+        this.minimumMatchesControl.valueChanges
+            .subscribe(value => {
+                this.minimumMatches = value;
+                this.reloadMainGraph();
+            });
+    }
+
+    reloadMainGraph(): void {
+        switch(this.graphTitle) {
+            case 'Games Won':
+                this.loadGamesWon();
+                break;
+            case 'Games Played':
+                this.loadGamesPlayed();
+                break;
+            case 'Win %':
+                this.loadGamesWonPct();
+                break;
+            case 'Points Per Game':
+                this.loadPointsPerGame();
+                break;
+            default:
+                this.loadGamesWon();
+        }
+    }
+
+    getAndFilterPlayers(): Promise<Player[]> {
+        return this.playerService.getPlayers()
+            .then(result => {
+                return result
+                    .filter(play => ((play.locationId === this.selectedLocationId) || (this.selectedLocationId === this.locationIdAll)))
+                    .filter(play => ((play.almaMaterId === this.selectedAlmaMaterId) || (this.selectedAlmaMaterId === this.almaMaterIdAll)))
+                    .filter(play => (play.gamesPlayed[this.selectedMatchTypeId] >= this.minimumMatches));
             })
     }
 
     loadGamesPlayed(): void {
         this.showChart = false;
-        this.playerService.getPlayers()
+        this.getAndFilterPlayers()
             .then(result => {
 
                 result = result.sort((x, y) => {
@@ -108,7 +175,7 @@ export class DashboardComponent implements OnInit {
 
     loadGamesWon(): void {
         this.showChart = false;
-        this.playerService.getPlayers()
+        this.getAndFilterPlayers()
             .then(result => {
 
                 result = result.sort((x, y) => {
@@ -134,7 +201,7 @@ export class DashboardComponent implements OnInit {
 
     loadGamesWonPct(): void {
         this.showChart = false;
-        this.playerService.getPlayers()
+        this.getAndFilterPlayers()
             .then(result => {
                 
                 result = result.sort((x, y) => {
@@ -160,7 +227,7 @@ export class DashboardComponent implements OnInit {
 
     loadPointsPerGame(): void {
         this.showChart = false;
-        this.playerService.getPlayers()
+        this.getAndFilterPlayers()
             .then(result => {
 
                 result = result.sort((x, y) => {
