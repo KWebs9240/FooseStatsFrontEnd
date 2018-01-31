@@ -1538,6 +1538,80 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/Tournament/tournament-creation.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* dragula-specific example page styles */\r\n.bamboozled {\r\ndisplay: table;\r\n}\r\n.innerBamboozle {\r\n    display: table-cell;\r\n    background-color: rgba(255, 255, 255, 0.2);\r\n    width: 50%;\r\n}\r\n.innerBamboozle:nth-child(odd) {\r\n    background-color: rgba(0, 0, 0, 0.2);\r\n}\r\n/*\r\n* note that styling gu-mirror directly is a bad practice because it's too generic.\r\n* you're better off giving the draggable elements a unique class and styling that directly!\r\n*/", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/Tournament/tournament-creation.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Tournament Creation</h3>\r\n<div>\r\n    <div>\r\n        <label>Tournament Name</label>\r\n        <input [(ngModel)]=\"tournamentName\">\r\n    </div>\r\n    <div>\r\n        <div class='bamboozled'>\r\n          <div class='innerBamboozle' [dragula]='\"first-bag\"' [dragulaModel]='selectFromPlayers'>\r\n            <li *ngFor=\"let item of selectFromPlayers\">{{item.firstName}} {{item.lastName}}</li>\r\n          </div>\r\n          <div class='innerBamboozle' [dragula]='\"first-bag\"' [dragulaModel]='participants'>\r\n            <li *ngFor=\"let item of participants\">{{item.firstName}} {{item.lastName}}</li>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    <button (click)=\"saveThenView()\">Save</button>\r\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/Tournament/tournament-creation.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TournamentCreationComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var TournamentCreationComponent = (function () {
+    function TournamentCreationComponent(playerService, router) {
+        this.playerService = playerService;
+        this.router = router;
+    }
+    TournamentCreationComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.playerService.getPlayers()
+            .then(function (result) {
+            _this.allPlayers = result;
+            _this.selectFromPlayers = _this.allPlayers;
+        });
+    };
+    return TournamentCreationComponent;
+}());
+TournamentCreationComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        styles: [__webpack_require__("../../../../dragula/dist/dragula.css"), __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.css")],
+        selector: 'tournament-creation',
+        template: __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.html")
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__Player_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__Player_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
+], TournamentCreationComponent);
+
+var _a, _b;
+//# sourceMappingURL=tournament-creation.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/app-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1554,12 +1628,14 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Location_location_management_component__ = __webpack_require__("../../../../../src/app/Location/location-management.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__AlmaMater_alma_mater_management_component__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Tournament_tournament_creation_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1584,6 +1660,7 @@ var routes = [
     { path: 'matchTypeManagement', component: __WEBPACK_IMPORTED_MODULE_8__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */] },
     { path: 'locationManagement', component: __WEBPACK_IMPORTED_MODULE_9__Location_location_management_component__["a" /* LocationManagementComponent */] },
     { path: 'almaMaterManagement', component: __WEBPACK_IMPORTED_MODULE_10__AlmaMater_alma_mater_management_component__["a" /* AlmaMaterManagementComponent */] },
+    { path: 'tournamentCreation', component: __WEBPACK_IMPORTED_MODULE_11__Tournament_tournament_creation_component__["a" /* TournamentCreationComponent */] },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -1622,7 +1699,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{title}}</h1>\r\n<nav>\r\n    <a routerLink=\"/dashboard\">Dashboard</a>\r\n    <a routerLink=\"/players\">Players</a>\r\n    <a routerLink=\"/matches\">Matches</a>\r\n    <!-- <a routerLink=\"/matchTypeManagement\">Match Types</a> -->\r\n</nav>\r\n<router-outlet></router-outlet>"
+module.exports = "<h1>{{title}}</h1>\r\n<nav>\r\n    <a routerLink=\"/dashboard\">Dashboard</a>\r\n    <a routerLink=\"/players\">Players</a>\r\n    <a routerLink=\"/matches\">Matches</a>\r\n    <a routerLink=\"/tournamentCreation\">Tournaments</a>\r\n    <!-- <a routerLink=\"/matchTypeManagement\">Match Types</a> -->\r\n</nav>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -1668,26 +1745,29 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__swimlane_ngx_charts__ = __webpack_require__("../../../../@swimlane/ngx-charts/release/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__swimlane_ngx_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__swimlane_ngx_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_color_picker__ = __webpack_require__("../../../../ngx-color-picker/dist/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_color_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ngx_color_picker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Player_player_selection_component__ = __webpack_require__("../../../../../src/app/Player/player-selection.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Player_PlayerDetail_player_detail_component__ = __webpack_require__("../../../../../src/app/Player/PlayerDetail/player-detail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Player_rival_service__ = __webpack_require__("../../../../../src/app/Player/rival.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Match_match_selection_component__ = __webpack_require__("../../../../../src/app/Match/match-selection.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Match_match_service__ = __webpack_require__("../../../../../src/app/Match/match.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Player_player_creation_component__ = __webpack_require__("../../../../../src/app/Player/player-creation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Match_match_creation_component__ = __webpack_require__("../../../../../src/app/Match/match-creation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__Location_location_management_component__ = __webpack_require__("../../../../../src/app/Location/location-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__Location_location_service__ = __webpack_require__("../../../../../src/app/Location/location.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__AlmaMater_alma_mater_management_component__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__AlmaMater_alma_mater_service__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_dragula__ = __webpack_require__("../../../../ng2-dragula/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_dragula___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_dragula__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_color_picker__ = __webpack_require__("../../../../ngx-color-picker/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_color_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_ngx_color_picker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Player_player_selection_component__ = __webpack_require__("../../../../../src/app/Player/player-selection.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Player_PlayerDetail_player_detail_component__ = __webpack_require__("../../../../../src/app/Player/PlayerDetail/player-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Player_rival_service__ = __webpack_require__("../../../../../src/app/Player/rival.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Match_match_selection_component__ = __webpack_require__("../../../../../src/app/Match/match-selection.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Match_match_service__ = __webpack_require__("../../../../../src/app/Match/match.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Player_player_creation_component__ = __webpack_require__("../../../../../src/app/Player/player-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__Match_match_creation_component__ = __webpack_require__("../../../../../src/app/Match/match-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__Location_location_management_component__ = __webpack_require__("../../../../../src/app/Location/location-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__Location_location_service__ = __webpack_require__("../../../../../src/app/Location/location.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__AlmaMater_alma_mater_management_component__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__AlmaMater_alma_mater_service__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__Tournament_tournament_creation_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1721,6 +1801,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -1729,36 +1811,38 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         providers: [
-            __WEBPACK_IMPORTED_MODULE_14__Match_match_service__["a" /* MatchService */],
-            __WEBPACK_IMPORTED_MODULE_11__Player_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_12__Player_rival_service__["a" /* RivalService */],
-            __WEBPACK_IMPORTED_MODULE_18__MatchType_match_type_service__["a" /* MatchTypeService */],
-            __WEBPACK_IMPORTED_MODULE_20__Location_location_service__["a" /* LocationService */],
-            __WEBPACK_IMPORTED_MODULE_22__AlmaMater_alma_mater_service__["a" /* AlmaMaterService */],
+            __WEBPACK_IMPORTED_MODULE_15__Match_match_service__["a" /* MatchService */],
+            __WEBPACK_IMPORTED_MODULE_12__Player_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_13__Player_rival_service__["a" /* RivalService */],
+            __WEBPACK_IMPORTED_MODULE_19__MatchType_match_type_service__["a" /* MatchTypeService */],
+            __WEBPACK_IMPORTED_MODULE_21__Location_location_service__["a" /* LocationService */],
+            __WEBPACK_IMPORTED_MODULE_23__AlmaMater_alma_mater_service__["a" /* AlmaMaterService */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["BrowserModule"],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_23__app_routing_module__["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_25__app_routing_module__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_4__swimlane_ngx_charts__["NgxChartsModule"],
-            __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_6_ngx_color_picker__["ColorPickerModule"],
+            __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+            __WEBPACK_IMPORTED_MODULE_7_ngx_color_picker__["ColorPickerModule"],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* ReactiveFormsModule */],
+            __WEBPACK_IMPORTED_MODULE_5_ng2_dragula__["DragulaModule"],
         ],
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__dashboard_component__["a" /* DashboardComponent */],
-            __WEBPACK_IMPORTED_MODULE_9__Player_player_selection_component__["a" /* PlayerSelectionComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__Player_PlayerDetail_player_detail_component__["a" /* PlayerDetailComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__Match_match_selection_component__["a" /* MatchSelectionComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__Player_player_creation_component__["a" /* PlayerCreationComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__Match_match_creation_component__["a" /* MatchCreationComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__Location_location_management_component__["a" /* LocationManagementComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__AlmaMater_alma_mater_management_component__["a" /* AlmaMaterManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__dashboard_component__["a" /* DashboardComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__Player_player_selection_component__["a" /* PlayerSelectionComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__Player_PlayerDetail_player_detail_component__["a" /* PlayerDetailComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__Match_match_selection_component__["a" /* MatchSelectionComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__Player_player_creation_component__["a" /* PlayerCreationComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__Match_match_creation_component__["a" /* MatchCreationComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__Location_location_management_component__["a" /* LocationManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__AlmaMater_alma_mater_management_component__["a" /* AlmaMaterManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_24__Tournament_tournament_creation_component__["a" /* TournamentCreationComponent */],
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 

@@ -10,6 +10,7 @@ import { MatchCreationComponent } from './Match/match-creation.component';
 import { MatchTypeManagementComponent } from './MatchType/match-type-management.component';
 import { LocationManagementComponent } from './Location/location-management.component';
 import { AlmaMaterManagementComponent } from './AlmaMater/alma-mater-management.component';
+import { TournamentCreationComponent } from './Tournament/tournament-creation.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
     { path: 'matchTypeManagement', component: MatchTypeManagementComponent },
     { path: 'locationManagement', component: LocationManagementComponent },
     { path: 'almaMaterManagement', component: AlmaMaterManagementComponent },
+    { path: 'tournamentCreation', component: TournamentCreationComponent },
 ];
 
 @NgModule({

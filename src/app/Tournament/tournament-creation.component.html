@@ -1,0 +1,18 @@
+<h3>Tournament Creation</h3>
+<div>
+    <div>
+        <label>Tournament Name</label>
+        <input [(ngModel)]="tournamentName">
+    </div>
+    <div>
+        <div class='bamboozled'>
+          <div class='innerBamboozle' [dragula]='"first-bag"' [dragulaModel]='selectFromPlayers'>
+            <li *ngFor="let item of selectFromPlayers">{{item.firstName}} {{item.lastName}}</li>
+          </div>
+          <div class='innerBamboozle' [dragula]='"first-bag"' [dragulaModel]='participants'>
+            <li *ngFor="let item of participants">{{item.firstName}} {{item.lastName}}</li>
+          </div>
+        </div>
+      </div>
+    <button (click)="saveThenView()">Save</button>
+</div>

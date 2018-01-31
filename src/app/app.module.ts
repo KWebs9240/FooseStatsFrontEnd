@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 //import { InMemoryDataService } from './in-memory-data.service';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DragulaModule } from 'ng2-dragula';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ColorPickerModule } from 'ngx-color-picker';
 
@@ -27,6 +28,7 @@ import { LocationManagementComponent } from './Location/location-management.comp
 import { LocationService } from './Location/location.service';
 import { AlmaMaterManagementComponent } from './AlmaMater/alma-mater-management.component';
 import { AlmaMaterService } from './AlmaMater/alma-mater.service';
+import { TournamentCreationComponent } from './Tournament/tournament-creation.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -49,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ColorPickerModule,
     ReactiveFormsModule,
+    DragulaModule,
     //InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   declarations: [ 
@@ -62,6 +65,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatchTypeManagementComponent,
     LocationManagementComponent,
     AlmaMaterManagementComponent,
+    TournamentCreationComponent,
   ],
   bootstrap:    [ AppComponent ]
 })
