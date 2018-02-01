@@ -7,12 +7,12 @@
     <div>
         <div class='bamboozled'>
           <div class='innerBamboozle' [dragula]='"first-bag"' [dragulaModel]='selectFromPlayers'>
-            <li *ngFor="let item of selectFromPlayers">{{item.firstName}} {{item.lastName}}</li>
+            <li *ngFor="let item of selectFromPlayers" [attr.data-id]="item.playerId">{{item.firstName}} {{item.lastName}}</li>
           </div>
           <div class='innerBamboozle' [dragula]='"first-bag"' [dragulaModel]='participants'>
             <li *ngFor="let item of participants">{{item.firstName}} {{item.lastName}}</li>
           </div>
         </div>
       </div>
-    <button (click)="saveThenView()">Save</button>
+    <button (click)="createTournament()">Save</button>
 </div>

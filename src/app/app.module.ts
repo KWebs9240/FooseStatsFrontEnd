@@ -29,6 +29,7 @@ import { LocationService } from './Location/location.service';
 import { AlmaMaterManagementComponent } from './AlmaMater/alma-mater-management.component';
 import { AlmaMaterService } from './AlmaMater/alma-mater.service';
 import { TournamentCreationComponent } from './Tournament/tournament-creation.component';
+import { TournamentService } from './Tournament/tournament.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -41,6 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatchTypeService,
     LocationService,
     AlmaMaterService,
+    TournamentService,
   ],
   imports: [
     BrowserModule,
