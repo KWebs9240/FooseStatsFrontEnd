@@ -18,6 +18,17 @@ export class TournamentService{
 
     constructor(private http: Http) {}
 
+    getTournamentHeaders(): Promise<Tournament[]> {
+        return this.http.get(this.tournamentUrl)
+            .toPromise()
+            .then(response => {
+                return response.json() as Tournament[];
+            })
+            .catch((error: any) => {
+                console.error('An error occured', error);
+                return Promise.reject(error.message || error); })
+    }
+
     createTournament(creationDto: TournamentCreation): Promise<Tournament> {
         return this.http
             .post(this.tournamentCompleteUrl, JSON.stringify(creationDto), {headers: this.headers})

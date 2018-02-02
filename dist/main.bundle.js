@@ -1266,7 +1266,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/Player/player-selection.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Fooseball Players</h3>\r\n<div>\r\n    <input (keydown.enter)=\"search()\" [(ngModel)]=\"searchTerm\">\r\n    <button (click)=\"search()\">Search</button>\r\n    <button (click)=\"addNew()\">Add Player</button>\r\n    <a *ngFor=\"let player of players\" [routerLink]=\"['/players', player.playerId]\">\r\n        <div>\r\n            <h4>{{player.firstName}} {{player.lastName}} - {{player.nickName}}</h4>\r\n        </div>\r\n    </a>\r\n</div>"
+module.exports = "<h3>Players</h3>\r\n<div>\r\n    <input (keydown.enter)=\"search()\" [(ngModel)]=\"searchTerm\">\r\n    <button (click)=\"search()\">Search</button>\r\n    <button (click)=\"addNew()\">Add Player</button>\r\n    <a *ngFor=\"let player of players\" [routerLink]=\"['/players', player.playerId]\">\r\n        <div>\r\n            <h4>{{player.firstName}} {{player.lastName}} - {{player.nickName}}</h4>\r\n        </div>\r\n    </a>\r\n</div>"
 
 /***/ }),
 
@@ -1689,6 +1689,73 @@ var TournamentCreation = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/Tournament/tournament-selection.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Tournaments</h3>\r\n<div>\r\n    <input (keydown.enter)=\"search()\" [(ngModel)]=\"searchTerm\">\r\n    <button (click)=\"search()\">Search</button>\r\n    <button (click)=\"addNew()\">Create Tournament</button>\r\n    <a *ngFor=\"let tourney of tournaments\" [routerLink]=\"['/tournament', tourney.tournamentId]\">\r\n        <div>\r\n            <h4>{{tourney.tournamentName}} {{tourney.createdDate}}</h4>\r\n        </div>\r\n    </a>\r\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/Tournament/tournament-selection.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TournamentSelectionComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tournament_service__ = __webpack_require__("../../../../../src/app/Tournament/tournament.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var TournamentSelectionComponent = (function () {
+    function TournamentSelectionComponent(tournamentService, router) {
+        this.tournamentService = tournamentService;
+        this.router = router;
+        this.allTournamentHeaders = [];
+        this.tournaments = [];
+        this.searchTerm = null;
+    }
+    TournamentSelectionComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.tournamentService.getTournamentHeaders()
+            .then(function (result) {
+            _this.allTournamentHeaders = result;
+            _this.tournaments = result;
+        });
+    };
+    TournamentSelectionComponent.prototype.search = function () {
+        var _this = this;
+        this.tournaments = this.allTournamentHeaders.filter(function (tourney) {
+            return tourney.tournamentName.toUpperCase().includes(_this.searchTerm == null ? '' : _this.searchTerm.toUpperCase());
+        });
+    };
+    TournamentSelectionComponent.prototype.addNew = function () {
+        this.router.navigate(['./tournamentCreation']);
+    };
+    return TournamentSelectionComponent;
+}());
+TournamentSelectionComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'tournament-selection',
+        template: __webpack_require__("../../../../../src/app/Tournament/tournament-selection.component.html")
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__tournament_service__["a" /* TournamentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__tournament_service__["a" /* TournamentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
+], TournamentSelectionComponent);
+
+var _a, _b;
+//# sourceMappingURL=tournament-selection.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/Tournament/tournament.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1722,6 +1789,17 @@ var TournamentService = (function () {
         this.tournamentCompleteUrl = __WEBPACK_IMPORTED_MODULE_4__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + 'api/Tournament/Complete';
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
     }
+    TournamentService.prototype.getTournamentHeaders = function () {
+        return this.http.get(this.tournamentUrl)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(function (error) {
+            console.error('An error occured', error);
+            return Promise.reject(error.message || error);
+        });
+    };
     TournamentService.prototype.createTournament = function (creationDto) {
         return this.http
             .post(this.tournamentCompleteUrl, JSON.stringify(creationDto), { headers: this.headers })
@@ -1758,13 +1836,15 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__MatchType_match_type_management_component__ = __webpack_require__("../../../../../src/app/MatchType/match-type-management.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Location_location_management_component__ = __webpack_require__("../../../../../src/app/Location/location-management.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__AlmaMater_alma_mater_management_component__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Tournament_tournament_creation_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Tournament_tournament_selection_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-selection.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Tournament_tournament_creation_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1790,7 +1870,8 @@ var routes = [
     { path: 'matchTypeManagement', component: __WEBPACK_IMPORTED_MODULE_8__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */] },
     { path: 'locationManagement', component: __WEBPACK_IMPORTED_MODULE_9__Location_location_management_component__["a" /* LocationManagementComponent */] },
     { path: 'almaMaterManagement', component: __WEBPACK_IMPORTED_MODULE_10__AlmaMater_alma_mater_management_component__["a" /* AlmaMaterManagementComponent */] },
-    { path: 'tournamentCreation', component: __WEBPACK_IMPORTED_MODULE_11__Tournament_tournament_creation_component__["a" /* TournamentCreationComponent */] },
+    { path: 'tournaments', component: __WEBPACK_IMPORTED_MODULE_11__Tournament_tournament_selection_component__["a" /* TournamentSelectionComponent */] },
+    { path: 'tournamentCreation', component: __WEBPACK_IMPORTED_MODULE_12__Tournament_tournament_creation_component__["a" /* TournamentCreationComponent */] },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -1829,7 +1910,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{title}}</h1>\r\n<nav>\r\n    <a routerLink=\"/dashboard\">Dashboard</a>\r\n    <a routerLink=\"/players\">Players</a>\r\n    <a routerLink=\"/matches\">Matches</a>\r\n    <a routerLink=\"/tournamentCreation\">Tournaments</a>\r\n    <!-- <a routerLink=\"/matchTypeManagement\">Match Types</a> -->\r\n</nav>\r\n<router-outlet></router-outlet>"
+module.exports = "<h1>{{title}}</h1>\r\n<nav>\r\n    <a routerLink=\"/dashboard\">Dashboard</a>\r\n    <a routerLink=\"/players\">Players</a>\r\n    <a routerLink=\"/matches\">Matches</a>\r\n    <a routerLink=\"/tournaments\">Tournaments</a>\r\n    <!-- <a routerLink=\"/matchTypeManagement\">Match Types</a> -->\r\n</nav>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -1896,9 +1977,10 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__Location_location_service__ = __webpack_require__("../../../../../src/app/Location/location.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__AlmaMater_alma_mater_management_component__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater-management.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__AlmaMater_alma_mater_service__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__Tournament_tournament_creation_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__Tournament_tournament_service__ = __webpack_require__("../../../../../src/app/Tournament/tournament.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__Tournament_tournament_selection_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-selection.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__Tournament_tournament_creation_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__Tournament_tournament_service__ = __webpack_require__("../../../../../src/app/Tournament/tournament.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1911,6 +1993,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 //import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService } from './in-memory-data.service';
+
 
 
 
@@ -1949,12 +2032,12 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_19__MatchType_match_type_service__["a" /* MatchTypeService */],
             __WEBPACK_IMPORTED_MODULE_21__Location_location_service__["a" /* LocationService */],
             __WEBPACK_IMPORTED_MODULE_23__AlmaMater_alma_mater_service__["a" /* AlmaMaterService */],
-            __WEBPACK_IMPORTED_MODULE_25__Tournament_tournament_service__["a" /* TournamentService */],
+            __WEBPACK_IMPORTED_MODULE_26__Tournament_tournament_service__["a" /* TournamentService */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["BrowserModule"],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_26__app_routing_module__["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_27__app_routing_module__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_4__swimlane_ngx_charts__["NgxChartsModule"],
             __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
@@ -1973,7 +2056,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_18__MatchType_match_type_management_component__["a" /* MatchTypeManagementComponent */],
             __WEBPACK_IMPORTED_MODULE_20__Location_location_management_component__["a" /* LocationManagementComponent */],
             __WEBPACK_IMPORTED_MODULE_22__AlmaMater_alma_mater_management_component__["a" /* AlmaMaterManagementComponent */],
-            __WEBPACK_IMPORTED_MODULE_24__Tournament_tournament_creation_component__["a" /* TournamentCreationComponent */],
+            __WEBPACK_IMPORTED_MODULE_24__Tournament_tournament_selection_component__["a" /* TournamentSelectionComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__Tournament_tournament_creation_component__["a" /* TournamentCreationComponent */],
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
     })

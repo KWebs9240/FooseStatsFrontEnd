@@ -1,0 +1,11 @@
+<h3>Tournaments</h3>
+<div>
+    <input (keydown.enter)="search()" [(ngModel)]="searchTerm">
+    <button (click)="search()">Search</button>
+    <button (click)="addNew()">Create Tournament</button>
+    <a *ngFor="let tourney of tournaments" [routerLink]="['/tournament', tourney.tournamentId]">
+        <div>
+            <h4>{{tourney.tournamentName}} {{tourney.createdDate}}</h4>
+        </div>
+    </a>
+</div>

@@ -10,6 +10,7 @@ import { MatchCreationComponent } from './Match/match-creation.component';
 import { MatchTypeManagementComponent } from './MatchType/match-type-management.component';
 import { LocationManagementComponent } from './Location/location-management.component';
 import { AlmaMaterManagementComponent } from './AlmaMater/alma-mater-management.component';
+import { TournamentSelectionComponent } from './Tournament/tournament-selection.component';
 import { TournamentCreationComponent } from './Tournament/tournament-creation.component';
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'matchTypeManagement', component: MatchTypeManagementComponent },
     { path: 'locationManagement', component: LocationManagementComponent },
     { path: 'almaMaterManagement', component: AlmaMaterManagementComponent },
+    { path: 'tournaments', component: TournamentSelectionComponent },
     { path: 'tournamentCreation', component: TournamentCreationComponent },
 ];
 

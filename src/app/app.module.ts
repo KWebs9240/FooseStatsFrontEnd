@@ -28,6 +28,7 @@ import { LocationManagementComponent } from './Location/location-management.comp
 import { LocationService } from './Location/location.service';
 import { AlmaMaterManagementComponent } from './AlmaMater/alma-mater-management.component';
 import { AlmaMaterService } from './AlmaMater/alma-mater.service';
+import { TournamentSelectionComponent } from './Tournament/tournament-selection.component';
 import { TournamentCreationComponent } from './Tournament/tournament-creation.component';
 import { TournamentService } from './Tournament/tournament.service';
 
@@ -67,6 +68,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatchTypeManagementComponent,
     LocationManagementComponent,
     AlmaMaterManagementComponent,
+    TournamentSelectionComponent,
     TournamentCreationComponent,
   ],
   bootstrap:    [ AppComponent ]
