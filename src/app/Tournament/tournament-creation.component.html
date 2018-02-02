@@ -5,12 +5,18 @@
         <input [(ngModel)]="tournamentName">
     </div>
     <div>
+      <label>Match Type</label>
+      <select [(ngModel)]="selectedMatchType">
+          <option *ngFor="let matchType of allMatchTypes" [ngValue]="matchType">{{matchType.matchTypeDescription}}</option>
+      </select>
+    </div>
+    <div>
         <div class='bamboozled'>
-          <div class='innerBamboozle' [dragula]='"first-bag"' [dragulaModel]='selectFromPlayers'>
+          <div id='sourcePlayers' class='innerBamboozle' [dragula]='"first-bag"' [dragulaModel]='selectFromPlayers'>
             <li *ngFor="let item of selectFromPlayers" [attr.data-id]="item.playerId">{{item.firstName}} {{item.lastName}}</li>
           </div>
-          <div class='innerBamboozle' [dragula]='"first-bag"' [dragulaModel]='participants'>
-            <li *ngFor="let item of participants">{{item.firstName}} {{item.lastName}}</li>
+          <div id='targetParticipants' class='innerBamboozle' [dragula]='"first-bag"' [dragulaModel]='participants'>
+            <li *ngFor="let item of participants" [attr.data-id]="item.playerId">{{item.firstName}} {{item.lastName}}</li>
           </div>
         </div>
       </div>

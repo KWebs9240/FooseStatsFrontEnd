@@ -1559,7 +1559,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/Tournament/tournament-creation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Tournament Creation</h3>\r\n<div>\r\n    <div>\r\n        <label>Tournament Name</label>\r\n        <input [(ngModel)]=\"tournamentName\">\r\n    </div>\r\n    <div>\r\n        <div class='bamboozled'>\r\n          <div class='innerBamboozle' [dragula]='\"first-bag\"' [dragulaModel]='selectFromPlayers'>\r\n            <li *ngFor=\"let item of selectFromPlayers\" [attr.data-id]=\"item.playerId\">{{item.firstName}} {{item.lastName}}</li>\r\n          </div>\r\n          <div class='innerBamboozle' [dragula]='\"first-bag\"' [dragulaModel]='participants'>\r\n            <li *ngFor=\"let item of participants\">{{item.firstName}} {{item.lastName}}</li>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    <button (click)=\"createTournament()\">Save</button>\r\n</div>"
+module.exports = "<h3>Tournament Creation</h3>\r\n<div>\r\n    <div>\r\n        <label>Tournament Name</label>\r\n        <input [(ngModel)]=\"tournamentName\">\r\n    </div>\r\n    <div>\r\n      <label>Match Type</label>\r\n      <select [(ngModel)]=\"selectedMatchType\">\r\n          <option *ngFor=\"let matchType of allMatchTypes\" [ngValue]=\"matchType\">{{matchType.matchTypeDescription}}</option>\r\n      </select>\r\n    </div>\r\n    <div>\r\n        <div class='bamboozled'>\r\n          <div id='sourcePlayers' class='innerBamboozle' [dragula]='\"first-bag\"' [dragulaModel]='selectFromPlayers'>\r\n            <li *ngFor=\"let item of selectFromPlayers\" [attr.data-id]=\"item.playerId\">{{item.firstName}} {{item.lastName}}</li>\r\n          </div>\r\n          <div id='targetParticipants' class='innerBamboozle' [dragula]='\"first-bag\"' [dragulaModel]='participants'>\r\n            <li *ngFor=\"let item of participants\" [attr.data-id]=\"item.playerId\">{{item.firstName}} {{item.lastName}}</li>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    <button (click)=\"createTournament()\">Save</button>\r\n</div>"
 
 /***/ }),
 
@@ -1571,10 +1571,11 @@ module.exports = "<h3>Tournament Creation</h3>\r\n<div>\r\n    <div>\r\n        
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Player_player_service__ = __webpack_require__("../../../../../src/app/Player/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tournament_creation__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tournament_service__ = __webpack_require__("../../../../../src/app/Tournament/tournament.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_dragula_ng2_dragula__ = __webpack_require__("../../../../ng2-dragula/ng2-dragula.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_dragula_ng2_dragula___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_dragula_ng2_dragula__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MatchType_match_type_service__ = __webpack_require__("../../../../../src/app/MatchType/match-type.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tournament_creation__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tournament_service__ = __webpack_require__("../../../../../src/app/Tournament/tournament.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_dragula_ng2_dragula__ = __webpack_require__("../../../../ng2-dragula/ng2-dragula.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_dragula_ng2_dragula___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_dragula_ng2_dragula__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1590,11 +1591,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TournamentCreationComponent = (function () {
-    function TournamentCreationComponent(tournamentService, playerService, dragulaService, router) {
+    function TournamentCreationComponent(tournamentService, playerService, matchTypeService, dragulaService, router) {
         var _this = this;
         this.tournamentService = tournamentService;
         this.playerService = playerService;
+        this.matchTypeService = matchTypeService;
         this.dragulaService = dragulaService;
         this.router = router;
         this.participants = [];
@@ -1608,20 +1611,51 @@ var TournamentCreationComponent = (function () {
         this.playerService.getPlayers()
             .then(function (result) {
             _this.allPlayers = result;
-            _this.selectFromPlayers = _this.allPlayers;
+            _this.selectFromPlayers = _this.allPlayers
+                .map(function (x) { return Object.assign({}, x); });
+            _this.sortByName(_this.selectFromPlayers);
+        });
+        this.matchTypeService.getMatchTypes()
+            .then(function (result) {
+            _this.allMatchTypes = result;
+        });
+    };
+    TournamentCreationComponent.prototype.sortByName = function (playerList) {
+        return playerList.sort(function (x, y) {
+            if ((x.firstName + x.lastName) < (y.firstName + y.lastName)) {
+                return -1;
+            }
+            else if ((x.firstName + x.lastName) > (y.firstName + y.lastName)) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
         });
     };
     TournamentCreationComponent.prototype.onDrop = function (args) {
-        var e = args[0], el = args[1];
-        var player = this.allPlayers.find(function (x) { return x.playerId === e.dataset.id; });
-        var playerIndex = this.selectFromPlayers.indexOf(player);
-        this.selectFromPlayers.splice(playerIndex, 1);
-        this.participants.push(player);
+        var e = args[0], eTarg = args[1], eSource = args[2];
+        if (eTarg.id === eSource.id) { }
+        else if (eTarg.id === 'targetParticipants') {
+            var player = this.selectFromPlayers.find(function (x) { return x.playerId === e.dataset.id; });
+            var playerIndex = this.selectFromPlayers.indexOf(player);
+            this.selectFromPlayers.splice(playerIndex, 1);
+            this.participants.push(player);
+            this.sortByName(this.participants);
+        }
+        else if (eTarg.id === 'sourcePlayers') {
+            var player = this.participants.find(function (x) { return x.playerId === e.dataset.id; });
+            var playerIndex = this.participants.indexOf(player);
+            this.participants.splice(playerIndex, 1);
+            this.selectFromPlayers.push(player);
+            this.sortByName(this.selectFromPlayers);
+        }
     };
     TournamentCreationComponent.prototype.createTournament = function () {
-        var createTournament = new __WEBPACK_IMPORTED_MODULE_3__tournament_creation__["a" /* TournamentCreation */]();
+        var createTournament = new __WEBPACK_IMPORTED_MODULE_4__tournament_creation__["a" /* TournamentCreation */]();
         createTournament.tournamentName = this.tournamentName;
         createTournament.participants = this.participants;
+        createTournament.matchTypeId = this.selectedMatchType.matchTypeId;
         return this.tournamentService.createTournament(createTournament);
     };
     return TournamentCreationComponent;
@@ -1632,10 +1666,10 @@ TournamentCreationComponent = __decorate([
         selector: 'tournament-creation',
         template: __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.html")
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__tournament_service__["a" /* TournamentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__tournament_service__["a" /* TournamentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__Player_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__Player_player_service__["a" /* PlayerService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_ng2_dragula_ng2_dragula__["DragulaService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ng2_dragula_ng2_dragula__["DragulaService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__tournament_service__["a" /* TournamentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__tournament_service__["a" /* TournamentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__Player_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__Player_player_service__["a" /* PlayerService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__MatchType_match_type_service__["a" /* MatchTypeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__MatchType_match_type_service__["a" /* MatchTypeService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6_ng2_dragula_ng2_dragula__["DragulaService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ng2_dragula_ng2_dragula__["DragulaService"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _e || Object])
 ], TournamentCreationComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=tournament-creation.component.js.map
 
 /***/ }),
