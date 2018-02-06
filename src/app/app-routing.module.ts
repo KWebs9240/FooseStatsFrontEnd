@@ -12,6 +12,7 @@ import { LocationManagementComponent } from './Location/location-management.comp
 import { AlmaMaterManagementComponent } from './AlmaMater/alma-mater-management.component';
 import { TournamentSelectionComponent } from './Tournament/tournament-selection.component';
 import { TournamentCreationComponent } from './Tournament/tournament-creation.component';
+import { TournamentBracketComponent } from './Tournament/tournament-bracket.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: 'almaMaterManagement', component: AlmaMaterManagementComponent },
     { path: 'tournaments', component: TournamentSelectionComponent },
     { path: 'tournamentCreation', component: TournamentCreationComponent },
+    { path: 'tournament/:id', component: TournamentBracketComponent },
 ];
 
 @NgModule({

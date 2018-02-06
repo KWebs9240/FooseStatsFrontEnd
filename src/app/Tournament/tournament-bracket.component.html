@@ -1,0 +1,16 @@
+<h3>The Damn Bracket</h3>
+<div>
+<main id="tournament">
+    <ul *ngFor="let roundies of rounds; let i = index" class="round round-{{i + 1}}">
+        <li class="spacer">&nbsp;</li>
+
+        <ng-container *ngFor="let game of roundies">
+            <li class="game game-top">Player1 <span>55</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom ">Player2 <span>48</span></li>
+            
+            <li class="spacer">&nbsp;</li>
+        </ng-container>
+    </ul>
+</main>
+</div>

@@ -34,6 +34,7 @@ import { TournamentService } from './Tournament/tournament.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TournamentBracketComponent } from './Tournament/tournament-bracket.component';
 
 @NgModule({
   providers: [
@@ -70,6 +71,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AlmaMaterManagementComponent,
     TournamentSelectionComponent,
     TournamentCreationComponent,
+    TournamentBracketComponent
   ],
   bootstrap:    [ AppComponent ]
 })

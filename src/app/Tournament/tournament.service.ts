@@ -29,6 +29,18 @@ export class TournamentService{
                 return Promise.reject(error.message || error); })
     }
 
+    getTournamentComplete(tournamentId: String): Promise<Tournament> {
+        var TournamentParamAdded = this.tournamentCompleteUrl + '?TournamentId=' + tournamentId;
+        return this.http.get(TournamentParamAdded)
+            .toPromise()
+            .then(response => {
+                return response.json() as Tournament;
+            })
+            .catch((error: any) => {
+                console.error('An error occured', error);
+                return Promise.reject(error.message || error); })
+    }
+
     createTournament(creationDto: TournamentCreation): Promise<Tournament> {
         return this.http
             .post(this.tournamentCompleteUrl, JSON.stringify(creationDto), {headers: this.headers})

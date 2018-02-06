@@ -1538,6 +1538,102 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/Tournament/tournament-bracket.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/*\r\n *  Flex Layout Specifics\r\n*/\r\nmain{\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-orient:horizontal;\r\n    -webkit-box-direction:normal;\r\n        -ms-flex-direction:row;\r\n            flex-direction:row;\r\n  }\r\n  .round{\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-orient:vertical;\r\n    -webkit-box-direction:normal;\r\n        -ms-flex-direction:column;\r\n            flex-direction:column;\r\n    -webkit-box-pack:center;\r\n        -ms-flex-pack:center;\r\n            justify-content:center;\r\n    width:200px;\r\n    list-style:none;\r\n    padding:0;\r\n  }\r\n    .round .spacer{ -webkit-box-flex:1; -ms-flex-positive:1; flex-grow:1; }\r\n    .round .spacer:first-child,\r\n    .round .spacer:last-child{ -webkit-box-flex:.5; -ms-flex-positive:.5; flex-grow:.5; }\r\n  \r\n    .round .game-spacer{\r\n      -webkit-box-flex:1;\r\n          -ms-flex-positive:1;\r\n              flex-grow:1;\r\n    }\r\n  \r\n  /*\r\n   *  General Styles\r\n  */\r\n  body{\r\n    font-family:sans-serif;\r\n    font-size:small;\r\n    padding:10px;\r\n    line-height:1.4em;\r\n  }\r\n  \r\n  li.game{\r\n    padding-left:20px;\r\n  }\r\n  \r\n    li.game.winner{\r\n      font-weight:bold;\r\n    }\r\n    li.game span{\r\n      float:right;\r\n      margin-right:5px;\r\n    }\r\n  \r\n    li.game-top{ border-bottom:1px solid #aaa; }\r\n  \r\n    li.game-spacer{ \r\n      border-right:1px solid #aaa;\r\n      min-height:40px;\r\n    }\r\n  \r\n    li.game-bottom{ \r\n      border-top:1px solid #aaa;\r\n    }\r\n  ", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/Tournament/tournament-bracket.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h3>The Damn Bracket</h3>\r\n<div>\r\n<main id=\"tournament\">\r\n    <ul *ngFor=\"let roundies of rounds; let i = index\" class=\"round round-{{i + 1}}\">\r\n        <li class=\"spacer\">&nbsp;</li>\r\n\r\n        <ng-container *ngFor=\"let game of roundies\">\r\n            <li class=\"game game-top\">Player1 <span>55</span></li>\r\n            <li class=\"game game-spacer\">&nbsp;</li>\r\n            <li class=\"game game-bottom \">Player2 <span>48</span></li>\r\n            \r\n            <li class=\"spacer\">&nbsp;</li>\r\n        </ng-container>\r\n    </ul>\r\n</main>\r\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/Tournament/tournament-bracket.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TournamentBracketComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tournament__ = __webpack_require__("../../../../../src/app/Tournament/tournament.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tournament_service__ = __webpack_require__("../../../../../src/app/Tournament/tournament.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TournamentBracketComponent = (function () {
+    function TournamentBracketComponent(tournamentService, router, activatedRoute) {
+        this.tournamentService = tournamentService;
+        this.router = router;
+        this.activatedRoute = activatedRoute;
+        this.rounds = [];
+    }
+    TournamentBracketComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params
+            .switchMap(function (params) {
+            if (params['id']) {
+                return _this.tournamentService.getTournamentComplete(params['id']);
+            }
+            return new Promise(function (resolve) {
+                return new __WEBPACK_IMPORTED_MODULE_2__tournament__["a" /* Tournament */]();
+            });
+        }).subscribe(function (foundTournament) {
+            _this.tournament = foundTournament;
+            _this.recurseForRounds(foundTournament.tournamentMatch, 0);
+            _this.rounds.reverse();
+        });
+    };
+    TournamentBracketComponent.prototype.recurseForRounds = function (currentTourneyMatch, currentRound) {
+        if (currentTourneyMatch !== null) {
+            if (!this.rounds[currentRound]) {
+                this.rounds.push(new Array());
+            }
+            this.rounds[currentRound].push(currentTourneyMatch.currentMatch);
+            this.recurseForRounds(currentTourneyMatch.leftMatch, currentRound + 1);
+            this.recurseForRounds(currentTourneyMatch.rightMatch, currentRound + 1);
+        }
+    };
+    return TournamentBracketComponent;
+}());
+TournamentBracketComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        styles: [__webpack_require__("../../../../../src/app/Tournament/tournament-bracket.component.css")],
+        selector: 'tournament-bracket',
+        template: __webpack_require__("../../../../../src/app/Tournament/tournament-bracket.component.html")
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__tournament_service__["a" /* TournamentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__tournament_service__["a" /* TournamentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object])
+], TournamentBracketComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=tournament-bracket.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/Tournament/tournament-creation.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1800,6 +1896,18 @@ var TournamentService = (function () {
             return Promise.reject(error.message || error);
         });
     };
+    TournamentService.prototype.getTournamentComplete = function (tournamentId) {
+        var TournamentParamAdded = this.tournamentCompleteUrl + '?TournamentId=' + tournamentId;
+        return this.http.get(TournamentParamAdded)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(function (error) {
+            console.error('An error occured', error);
+            return Promise.reject(error.message || error);
+        });
+    };
     TournamentService.prototype.createTournament = function (creationDto) {
         return this.http
             .post(this.tournamentCompleteUrl, JSON.stringify(creationDto), { headers: this.headers })
@@ -1817,6 +1925,21 @@ TournamentService = __decorate([
 
 var _a;
 //# sourceMappingURL=tournament.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/Tournament/tournament.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Tournament; });
+var Tournament = (function () {
+    function Tournament() {
+    }
+    return Tournament;
+}());
+
+//# sourceMappingURL=tournament.js.map
 
 /***/ }),
 
@@ -1838,12 +1961,14 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__AlmaMater_alma_mater_management_component__ = __webpack_require__("../../../../../src/app/AlmaMater/alma-mater-management.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Tournament_tournament_selection_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-selection.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Tournament_tournament_creation_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Tournament_tournament_bracket_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-bracket.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1872,6 +1997,7 @@ var routes = [
     { path: 'almaMaterManagement', component: __WEBPACK_IMPORTED_MODULE_10__AlmaMater_alma_mater_management_component__["a" /* AlmaMaterManagementComponent */] },
     { path: 'tournaments', component: __WEBPACK_IMPORTED_MODULE_11__Tournament_tournament_selection_component__["a" /* TournamentSelectionComponent */] },
     { path: 'tournamentCreation', component: __WEBPACK_IMPORTED_MODULE_12__Tournament_tournament_creation_component__["a" /* TournamentCreationComponent */] },
+    { path: 'tournament/:id', component: __WEBPACK_IMPORTED_MODULE_13__Tournament_tournament_bracket_component__["a" /* TournamentBracketComponent */] },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -1981,6 +2107,7 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__Tournament_tournament_creation_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-creation.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__Tournament_tournament_service__ = __webpack_require__("../../../../../src/app/Tournament/tournament.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__Tournament_tournament_bracket_component__ = __webpack_require__("../../../../../src/app/Tournament/tournament-bracket.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1993,6 +2120,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 //import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService } from './in-memory-data.service';
+
 
 
 
@@ -2058,6 +2186,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_22__AlmaMater_alma_mater_management_component__["a" /* AlmaMaterManagementComponent */],
             __WEBPACK_IMPORTED_MODULE_24__Tournament_tournament_selection_component__["a" /* TournamentSelectionComponent */],
             __WEBPACK_IMPORTED_MODULE_25__Tournament_tournament_creation_component__["a" /* TournamentCreationComponent */],
+            __WEBPACK_IMPORTED_MODULE_28__Tournament_tournament_bracket_component__["a" /* TournamentBracketComponent */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
     })
