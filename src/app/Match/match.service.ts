@@ -26,18 +26,11 @@ export class MatchService {
         var cacheCheckTime = new Date()
         cacheCheckTime.setMinutes(cacheCheckTime.getMinutes() - 15);
         if(this.lastCacheDate < cacheCheckTime){
-            return this.http.get(this.matchUrl)
+            var paramedUrl = this.matchUrl + '?LoadPlayerInfo=true';
+            return this.http.get(paramedUrl)
             .toPromise()
             .then(response => {
                 this.allMatches = response.json() as Match[];
-
-                this.playerService.getPlayers()
-                    .then(players => {
-                        this.allMatches.forEach( match => {
-                            match.Player1Name = players.find(player => player.playerId === match.player1Id).firstName;
-                            match.Player2Name = players.find(player => player.playerId === match.player2Id).firstName;
-                        });
-                    });
 
                 this.lastCacheDate = new Date();
                 return this.allMatches;

@@ -3,7 +3,7 @@
     <button (click)="addNew()">Add Match</button>
     <a *ngFor="let match of allMatches" [routerLink]="['/matchcreate', match.matchId]">
         <div>
-            <h4>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</h4>
+            <h4>{{match.player1.firstName}} {{match.player1.lastName}} vs. {{match.player2.firstName}} {{match.player2.lastName}} --- {{match.team1Score}}-{{match.team2Score}}</h4>
         </div>
     </a>
 </div>

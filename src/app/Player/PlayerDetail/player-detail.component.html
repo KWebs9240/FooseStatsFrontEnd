@@ -46,6 +46,6 @@
         <button (click)="modifyPlayer()">Modify Player</button>
         <button (click)="deletePlayer()">Delete Player</button>
         <a *ngFor="let match of filteredMatches" [routerLink]="['/matchcreate', match.matchId]">
-                <li>{{match.Player1Name}} vs. {{match.Player2Name}} --- {{match.team1Score}}-{{match.team2Score}}</li>
+                <li>{{match.player1.firstName}} {{match.player1.lastName}} vs. {{match.player2.firstName}} {{match.player2.lastName}} --- {{match.team1Score}}-{{match.team2Score}}</li>
         </a>
 </div>
